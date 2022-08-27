@@ -1,0 +1,47 @@
+#I_SCOM
+  CC 19200, 0, 1, 0
+  CI2
+  True = 1
+  False = 0
+  bfsize = 800
+  is_full = 0
+  is_empty = 1
+  dsr = False
+  lastw = 0
+  head = 0
+  tail = 0
+  DM buffer[bfsize]
+  wtt = 250
+'
+#CLRBF
+  IF head < bfsize
+    buffer[head] = 0
+    head = head + 1
+    JP #CLRBF
+  ENDIF
+'
+  head = 0
+'
+#LOOP
+  WT 250
+  now = TIME
+  IF (now-lastw) > 250
+    dsr = True
+  ENDIF
+  JP #LOOP
+'
+#COMINT
+  buffer[head] = P2CH {S1}
+  lastw = TIME
+  dsr = False
+  is_empty = False
+  IF head < (bfsize - 1)
+    head = head + 1
+  ELSE
+    head = 0
+  ENDIF
+'
+  CI -1
+  EN1,1
+'
+'

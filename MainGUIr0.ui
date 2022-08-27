@@ -1,0 +1,6356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1921</width>
+    <height>995</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>2</y>
+      <width>1920</width>
+      <height>990</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Main Control</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>314</y>
+        <width>1200</width>
+        <height>495</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Tool</string>
+      </property>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>340</y>
+         <width>433</width>
+         <height>130</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Incremental Move</string>
+       </property>
+       <widget class="QPushButton" name="move_index_to_position">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>164</x>
+          <y>34</y>
+          <width>109</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Move To -&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="move_index_to_edit">
+        <property name="geometry">
+         <rect>
+          <x>324</x>
+          <y>60</y>
+          <width>63</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>-10</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="move_index_to_zero">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>34</y>
+          <width>105</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Move to 0.0</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="index_axis_sign_toggle">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>244</y>
+         <width>70</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>Icons/plus.ico</normaloff>Icons/plus.ico</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="set_index_position_zero">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>562</x>
+         <y>40</y>
+         <width>105</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Position
+To Zero</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="set_index_position_to">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>704</x>
+         <y>40</y>
+         <width>111</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Position
+ To -&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="set_index_position_edit">
+       <property name="geometry">
+        <rect>
+         <x>832</x>
+         <y>58</y>
+         <width>65</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="brake_left">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>272</y>
+         <width>93</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Brake Left</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="brake_right">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>272</y>
+         <width>95</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Brake Right</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="index_axis_balance_slider">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>226</y>
+         <width>375</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="sliderPosition">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="center_balance_slider">
+       <property name="geometry">
+        <rect>
+         <x>732</x>
+         <y>272</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>&gt;|&lt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_29">
+       <property name="geometry">
+        <rect>
+         <x>562</x>
+         <y>202</y>
+         <width>58</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Balance</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QSlider" name="index_axis_speed_slider">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>150</y>
+         <width>375</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>190000</number>
+       </property>
+       <property name="singleStep">
+        <number>1500</number>
+       </property>
+       <property name="pageStep">
+        <number>15000</number>
+       </property>
+       <property name="value">
+        <number>10000</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>562</x>
+         <y>120</y>
+         <width>45</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Speed</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="index_balance_edit">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>226</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="index_axis_speed_edit">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>148</y>
+         <width>65</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.75</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_8">
+       <property name="geometry">
+        <rect>
+         <x>596</x>
+         <y>340</y>
+         <width>583</width>
+         <height>130</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Jogging Move</string>
+       </property>
+       <widget class="QToolButton" name="jog_index_cw">
+        <property name="geometry">
+         <rect>
+          <x>156</x>
+          <y>34</y>
+          <width>90</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>CW</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>Icons/cw.ico</normaloff>Icons/cw.ico</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="jog_index_ccw">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>34</y>
+          <width>90</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>CCW</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>Icons/ccw.ico</normaloff>Icons/ccw.ico</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="jog_index_fwd">
+        <property name="geometry">
+         <rect>
+          <x>338</x>
+          <y>34</y>
+          <width>90</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>FWD</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+        <property name="arrowType">
+         <enum>Qt::UpArrow</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="jog_index_rev">
+        <property name="geometry">
+         <rect>
+          <x>464</x>
+          <y>34</y>
+          <width>90</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>REV</string>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+        <property name="arrowType">
+         <enum>Qt::DownArrow</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_13">
+        <property name="geometry">
+         <rect>
+          <x>292</x>
+          <y>32</y>
+          <width>3</width>
+          <height>86</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="stop_index_axis">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>244</y>
+         <width>350</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>STOP</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_37">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>124</y>
+         <width>62</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>inch/sec</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="enable_index_axis">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>40</y>
+         <width>70</width>
+         <height>187</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>I
+N
+D
+E
+X</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="activate_gamepad_index">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>1078</x>
+         <y>36</y>
+         <width>80</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>gamepad.png</normaloff>gamepad.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>65</width>
+         <height>65</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>40</y>
+         <width>397</width>
+         <height>187</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="right_current_bar">
+        <property name="geometry">
+         <rect>
+          <x>386</x>
+          <y>0</y>
+          <width>10</width>
+          <height>187</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="left_current_bar">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>10</width>
+          <height>187</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>148</y>
+          <width>97</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Position Error</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_42">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>166</y>
+          <width>53</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Current</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_left_position_error">
+        <property name="geometry">
+         <rect>
+          <x>126</x>
+          <y>148</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_left_motor_current">
+        <property name="geometry">
+         <rect>
+          <x>84</x>
+          <y>167</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_41">
+        <property name="geometry">
+         <rect>
+          <x>234</x>
+          <y>147</y>
+          <width>97</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Position Error</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_right_position_error">
+        <property name="geometry">
+         <rect>
+          <x>338</x>
+          <y>147</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_43">
+        <property name="geometry">
+         <rect>
+          <x>276</x>
+          <y>165</y>
+          <width>53</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Current</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_right_motor_current">
+        <property name="geometry">
+         <rect>
+          <x>338</x>
+          <y>166</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_follower_position">
+        <property name="geometry">
+         <rect>
+          <x>112</x>
+          <y>72</y>
+          <width>168</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>137</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);
+font: 30pt &quot;MS Shell Dlg 2&quot;;</string>
+        </property>
+        <property name="text">
+         <string>-000.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>18</x>
+          <y>2</y>
+          <width>64</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Left Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>22</x>
+          <y>48</y>
+          <width>55</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Velocity</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_left_position">
+        <property name="geometry">
+         <rect>
+          <x>24</x>
+          <y>22</y>
+          <width>56</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-000.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_velocity_left">
+        <property name="geometry">
+         <rect>
+          <x>38</x>
+          <y>68</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>2</y>
+          <width>75</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Right Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_right_position">
+        <property name="geometry">
+         <rect>
+          <x>316</x>
+          <y>22</y>
+          <width>56</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-000.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>316</x>
+          <y>48</y>
+          <width>55</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Velocity</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_velocity_right">
+        <property name="geometry">
+         <rect>
+          <x>332</x>
+          <y>68</y>
+          <width>38</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>-0.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="toggle_move_type">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>484</x>
+         <y>376</y>
+         <width>75</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Toggle
+Mode</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>22</y>
+        <width>1200</width>
+        <height>285</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Package</string>
+      </property>
+      <widget class="QWidget" name="widget_2" native="true">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>40</y>
+         <width>200</width>
+         <height>140</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(0, 0, 0);</string>
+       </property>
+       <widget class="QLabel" name="label_scan_position">
+        <property name="geometry">
+         <rect>
+          <x>14</x>
+          <y>6</y>
+          <width>144</width>
+          <height>52</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>26</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 255, 0);
+font: 26pt &quot;MS Shell Dlg 2&quot;;</string>
+        </property>
+        <property name="text">
+         <string>-000.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_7">
+        <property name="geometry">
+         <rect>
+          <x>52</x>
+          <y>56</y>
+          <width>95</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <widget class="QLabel" name="label_32">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Velocity</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_velocity_scan">
+           <property name="font">
+            <font>
+             <family>MS Shell Dlg 2</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 255, 0);
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+</string>
+           </property>
+           <property name="text">
+            <string>0.00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_8">
+        <property name="geometry">
+         <rect>
+          <x>38</x>
+          <y>84</y>
+          <width>137</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_20">
+         <item>
+          <widget class="QLabel" name="label_33">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Position Error</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_scan_position_error">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 255, 0);</string>
+           </property>
+           <property name="text">
+            <string>0.00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_14">
+        <property name="geometry">
+         <rect>
+          <x>38</x>
+          <y>102</y>
+          <width>139</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_22">
+         <item>
+          <widget class="QLabel" name="label_35">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Motor Current</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_scan_motor_current">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 255, 0);</string>
+           </property>
+           <property name="text">
+            <string>0.00</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="scan_current_bar">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>0</y>
+          <width>10</width>
+          <height>140</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="set_scan_position_zero">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>40</y>
+         <width>120</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Position
+To Zero</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="set_scan_position_edit">
+       <property name="geometry">
+        <rect>
+         <x>624</x>
+         <y>58</y>
+         <width>59</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="set_scan_position_to">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>486</x>
+         <y>40</y>
+         <width>120</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Position
+ To -&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>688</x>
+         <y>62</y>
+         <width>41</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>inch</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="move_scan_to_zero">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>124</y>
+         <width>120</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Move to 0.0</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="move_scan_to_edit">
+       <property name="geometry">
+        <rect>
+         <x>624</x>
+         <y>140</y>
+         <width>59</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-10</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="move_scan_to_position">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>486</x>
+         <y>124</y>
+         <width>120</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Move To -&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_38">
+       <property name="geometry">
+        <rect>
+         <x>692</x>
+         <y>144</y>
+         <width>41</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>inch</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="enable_scan_axis">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>40</y>
+         <width>70</width>
+         <height>140</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>17</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>S
+C
+A
+N</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="scan_axis_sign_toggle">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>196</y>
+         <width>70</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>Icons/plus.ico</normaloff>Icons/plus.ico</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="stop_scan_axis">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>196</y>
+         <width>202</width>
+         <height>70</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>STOP</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_40">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>202</y>
+         <width>62</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>inch/sec</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_axis_speed_edit">
+       <property name="geometry">
+        <rect>
+         <x>752</x>
+         <y>232</y>
+         <width>57</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.5</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QSlider" name="scan_axis_speed_slider">
+       <property name="geometry">
+        <rect>
+         <x>352</x>
+         <y>233</y>
+         <width>375</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>400000</number>
+       </property>
+       <property name="singleStep">
+        <number>1500</number>
+       </property>
+       <property name="pageStep">
+        <number>15000</number>
+       </property>
+       <property name="value">
+        <number>10000</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="geometry">
+        <rect>
+         <x>346</x>
+         <y>200</y>
+         <width>67</width>
+         <height>33</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Speed</string>
+       </property>
+       <property name="margin">
+        <number>9</number>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="jog_right">
+       <property name="geometry">
+        <rect>
+         <x>1060</x>
+         <y>40</y>
+         <width>90</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>RIGHT</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+       <property name="arrowType">
+        <enum>Qt::RightArrow</enum>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="jog_left">
+       <property name="geometry">
+        <rect>
+         <x>926</x>
+         <y>40</y>
+         <width>90</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>LEFT</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+       <property name="arrowType">
+        <enum>Qt::LeftArrow</enum>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="right_soft_limit_edit">
+       <property name="geometry">
+        <rect>
+         <x>1060</x>
+         <y>202</y>
+         <width>90</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>12.1</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>1064</x>
+         <y>236</y>
+         <width>80</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Right Limit</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="left_soft_limit_edit">
+       <property name="geometry">
+        <rect>
+         <x>926</x>
+         <y>202</y>
+         <width>90</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-12.1</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>936</x>
+         <y>236</y>
+         <width>69</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Left Limit</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="set_soft_limits">
+       <property name="geometry">
+        <rect>
+         <x>992</x>
+         <y>154</y>
+         <width>105</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Soft Limits</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="activate_gamepad_scan">
+       <property name="geometry">
+        <rect>
+         <x>788</x>
+         <y>40</y>
+         <width>80</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>gamepad.png</normaloff>gamepad.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>65</width>
+         <height>65</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="geometry">
+       <rect>
+        <x>1232</x>
+        <y>8</y>
+        <width>661</width>
+        <height>469</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Scan Options</string>
+      </property>
+      <widget class="QPushButton" name="scan_start_button">
+       <property name="geometry">
+        <rect>
+         <x>512</x>
+         <y>32</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Start Scan</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="scan_stop_button">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>512</x>
+         <y>124</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Stop Scan</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="scan_resume_button">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>512</x>
+         <y>352</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Resume</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="scan_pause_button">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>512</x>
+         <y>256</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="scan_options_scan_speed">
+       <property name="geometry">
+        <rect>
+         <x>34</x>
+         <y>72</y>
+         <width>300</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="scan_options_index_speed">
+       <property name="geometry">
+        <rect>
+         <x>34</x>
+         <y>148</y>
+         <width>300</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="uni_radio">
+       <property name="geometry">
+        <rect>
+         <x>46</x>
+         <y>212</y>
+         <width>134</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Uni-directional</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="bi_radio">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>212</y>
+         <width>124</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Bi-directional</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>48</x>
+         <y>126</y>
+         <width>189</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Index Speed (inches/sec)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>128</x>
+         <y>326</y>
+         <width>73</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Scan Stop</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>276</y>
+         <width>82</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Index Start</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>326</y>
+         <width>76</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Index Size</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>48</x>
+         <y>50</y>
+         <width>183</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Scan Speed (inches/sec)</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_scan_stop">
+       <property name="geometry">
+        <rect>
+         <x>44</x>
+         <y>322</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.5</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_index_size">
+       <property name="geometry">
+        <rect>
+         <x>298</x>
+         <y>322</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.25</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_index_start">
+       <property name="geometry">
+        <rect>
+         <x>298</x>
+         <y>272</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>374</y>
+         <width>79</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Index Stop</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_index_stop">
+       <property name="geometry">
+        <rect>
+         <x>298</x>
+         <y>370</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>12</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_scan_start">
+       <property name="geometry">
+        <rect>
+         <x>44</x>
+         <y>270</y>
+         <width>63</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>-0.5</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>128</x>
+         <y>274</y>
+         <width>76</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Scan Start</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_scan_edit">
+       <property name="geometry">
+        <rect>
+         <x>356</x>
+         <y>64</y>
+         <width>79</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_options_index_edit">
+       <property name="geometry">
+        <rect>
+         <x>358</x>
+         <y>140</y>
+         <width>79</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="scan_time_remaining_edit">
+       <property name="geometry">
+        <rect>
+         <x>144</x>
+         <y>418</y>
+         <width>65</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>60</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_28">
+       <property name="geometry">
+        <rect>
+         <x>222</x>
+         <y>420</y>
+         <width>146</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Minutes  Remaining</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="auto_incline_check_box">
+       <property name="geometry">
+        <rect>
+         <x>48</x>
+         <y>372</y>
+         <width>163</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Auto Incline Comp</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="geometry">
+       <rect>
+        <x>1236</x>
+        <y>484</y>
+        <width>659</width>
+        <height>437</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Sensor Feedback</string>
+      </property>
+      <widget class="QPushButton" name="activateAngle">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>38</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Activate Auto
+Angle</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="center_angle_slider">
+       <property name="geometry">
+        <rect>
+         <x>104</x>
+         <y>338</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Set Zero</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="deactivateAngle">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>182</x>
+         <y>36</y>
+         <width>125</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stop Auto
+Angle</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="commanded_angle">
+       <property name="geometry">
+        <rect>
+         <x>202</x>
+         <y>294</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_101">
+       <property name="geometry">
+        <rect>
+         <x>76</x>
+         <y>294</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Setpoint (deg):</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_21">
+       <property name="geometry">
+        <rect>
+         <x>86</x>
+         <y>134</y>
+         <width>159</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Tool Orientation</string>
+       </property>
+       <widget class="QLabel" name="tool_orientation">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>22</y>
+          <width>120</width>
+          <height>120</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>Icons/down-arrow.ico</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_22">
+       <property name="geometry">
+        <rect>
+         <x>332</x>
+         <y>26</y>
+         <width>309</width>
+         <height>393</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Angle Gauge</string>
+       </property>
+       <widget class="AnalogGaugeWidget" name="angle_readout" native="true">
+        <property name="geometry">
+         <rect>
+          <x>18</x>
+          <y>32</y>
+          <width>275</width>
+          <height>275</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_100">
+        <property name="geometry">
+         <rect>
+          <x>36</x>
+          <y>350</y>
+          <width>125</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Measured Angle:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="measured_angle">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>338</y>
+          <width>103</width>
+          <height>43</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>-00.00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="estop">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>826</y>
+        <width>1201</width>
+        <height>89</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>23</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>ESTOP</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>Faults</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_10">
+      <property name="geometry">
+       <rect>
+        <x>382</x>
+        <y>30</y>
+        <width>323</width>
+        <height>709</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Index Amplifier Faults</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>24</y>
+         <width>303</width>
+         <height>539</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QCheckBox" name="index_fault_0">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bus Under Voltage Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_1">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Average Overcurrent Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_2">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Instantaneous Overcurrent Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_3">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Amplifier Over Temperature Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_4">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>DSP Fault (CPU Failure)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_5">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Safe Operating Area Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_6">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>NVM Fault (Memory Failure)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_7">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Autobalance Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_8">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Hall Supply Voltage Error</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_9">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Fatal Error Detected</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_10">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bus Over Voltage Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_11">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Motor Over Temperature Fault (N/A)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_12">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>5 VDC Reference Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_13">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>+/-15 VDC Bias Voltage Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_14">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>2.5 VDC Reference Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_15">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>5 VDC External Fault</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="index_fault_32">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>No Alarm</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="clear_index_faults">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>588</y>
+         <width>175</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Clear Index Faults</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="refresh_index_faults">
+       <property name="geometry">
+        <rect>
+         <x>216</x>
+         <y>588</y>
+         <width>90</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_gathering_index_fault_data">
+       <property name="geometry">
+        <rect>
+         <x>72</x>
+         <y>664</y>
+         <width>178</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Gathering Fault Data</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_11">
+      <property name="geometry">
+       <rect>
+        <x>782</x>
+        <y>30</y>
+        <width>202</width>
+        <height>641</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Motion Controller Faults</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QGroupBox" name="groupBox_16">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>General</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QCheckBox" name="cb_software_estop">
+            <property name="text">
+             <string>Software ESTOP</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_hardware_estop">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Hardware ESTOP</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_12">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Left Motor</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QCheckBox" name="checkBox_9">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Position Error</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_left_fb_fault">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Feedback Fault</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Right Motor</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QCheckBox" name="checkBox_10">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Position Error</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_right_fb_fault">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Feedback Fault</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Scan Motor</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QCheckBox" name="checkBox_11">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Position Error</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_scan_fb_fault">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Feedback Fault</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Follower</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QCheckBox" name="checkBox_13">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Position Error</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_follower_fb_fault">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Feedback Fault</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ack_mc_faults">
+         <property name="text">
+          <string>Acknowledge
+Motion Ctrl Faults</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_15">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>323</width>
+        <height>700</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Scan Amplifier Faults</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>24</y>
+         <width>303</width>
+         <height>539</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QCheckBox" name="scan_fault_0">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bus Under Voltage Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_1">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Average Overcurrent Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_2">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Instantaneous Overcurrent Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_3">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Amplifier Over Temperature Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_4">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>DSP Fault (CPU Failure)</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_5">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Safe Operating Area Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_6">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>NVM Fault (Memory Failure)</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_7">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Autobalance Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_8">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Hall Supply Voltage Error</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_9">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Fatal Error Detected</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_10">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bus Over Voltage Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_11">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Motor Over Temperature Fault (N/A)</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_12">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>5 VDC Reference Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_13">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>+/-15 VDC Bias Voltage Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_14">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>2.5 VDC Reference Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_15">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>5 VDC External Fault</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scan_fault_16">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>No Alarm</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="clear_scan_faults">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>588</y>
+         <width>175</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Clear Scan Faults</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="refresh_scan_faults">
+       <property name="geometry">
+        <rect>
+         <x>216</x>
+         <y>588</y>
+         <width>90</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_gathering_scan_fault_data">
+       <property name="geometry">
+        <rect>
+         <x>72</x>
+         <y>664</y>
+         <width>178</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Gathering Fault Data</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Setup</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>76</y>
+        <width>1193</width>
+        <height>819</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Scan Axis Setup</string>
+       </attribute>
+       <widget class="QCheckBox" name="checkBox_reverseScanFeedback">
+        <property name="geometry">
+         <rect>
+          <x>542</x>
+          <y>66</y>
+          <width>250</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Scan Motor Feedback</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>34</y>
+          <width>450</width>
+          <height>720</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Scan Axis Scale Calculator</string>
+        </property>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>124</x>
+           <y>302</y>
+           <width>202</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Jog Speed coutns/second</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="calculate_scan_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>154</x>
+           <y>472</y>
+           <width>143</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Calculate Scale</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="scan_axis_counts">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>216</x>
+           <y>62</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="set_scan_position_zero_2">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>52</x>
+           <y>44</y>
+           <width>120</width>
+           <height>60</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Set Position
+To Zero</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="scan_distance_jogged">
+         <property name="geometry">
+          <rect>
+           <x>142</x>
+           <y>422</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>386</y>
+           <width>154</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Distance Jogged (in)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QSlider" name="scan_axis_speed_slider_2">
+         <property name="geometry">
+          <rect>
+           <x>108</x>
+           <y>324</y>
+           <width>235</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>400000</number>
+         </property>
+         <property name="singleStep">
+          <number>1500</number>
+         </property>
+         <property name="pageStep">
+          <number>15000</number>
+         </property>
+         <property name="value">
+          <number>10000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksBelow</enum>
+         </property>
+         <property name="tickInterval">
+          <number>50000</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>222</x>
+           <y>42</y>
+           <width>127</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Scan Axis Counts</string>
+         </property>
+        </widget>
+        <widget class="Line" name="line">
+         <property name="geometry">
+          <rect>
+           <x>66</x>
+           <y>550</y>
+           <width>323</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="scan_axis_scaling_factor">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>146</x>
+           <y>620</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>71133.78</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>586</y>
+           <width>149</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Scan Axis Scaling</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>328</x>
+           <y>622</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>cts/in</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_44">
+         <property name="geometry">
+          <rect>
+           <x>74</x>
+           <y>622</y>
+           <width>60</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Result:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="apply_scan_axis_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>182</x>
+           <y>662</y>
+           <width>93</width>
+           <height>43</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apply</string>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="jog_right_2">
+         <property name="geometry">
+          <rect>
+           <x>228</x>
+           <y>200</y>
+           <width>90</width>
+           <height>75</height>
+          </rect>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>RIGHT</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::RightArrow</enum>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="enable_scan_axis_2">
+         <property name="geometry">
+          <rect>
+           <x>118</x>
+           <y>122</y>
+           <width>197</width>
+           <height>55</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>ENABLE</string>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="jog_left_2">
+         <property name="geometry">
+          <rect>
+           <x>118</x>
+           <y>200</y>
+           <width>90</width>
+           <height>75</height>
+          </rect>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>LEFT</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::LeftArrow</enum>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLineEdit" name="scan_axis_error_limit">
+        <property name="geometry">
+         <rect>
+          <x>678</x>
+          <y>156</y>
+          <width>171</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0.1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_48">
+        <property name="geometry">
+         <rect>
+          <x>516</x>
+          <y>158</y>
+          <width>154</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Scan Axis Error Limit</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_49">
+        <property name="geometry">
+         <rect>
+          <x>868</x>
+          <y>158</y>
+          <width>47</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>inches</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_77">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>42</y>
+          <width>276</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CAUTION: Only Change w/ Motor Off</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="apply_scan_axis_error_limit">
+        <property name="geometry">
+         <rect>
+          <x>692</x>
+          <y>190</y>
+          <width>93</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Apply</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>542</x>
+          <y>566</y>
+          <width>125</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_80">
+           <property name="text">
+            <string>58448.73</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_82">
+           <property name="text">
+            <string>RPVID</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_84">
+           <property name="text">
+            <string>71133.78</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_83">
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_reverseScanMotor">
+        <property name="geometry">
+         <rect>
+          <x>542</x>
+          <y>92</y>
+          <width>247</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Scan Motor Direction</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Index Axis Setup</string>
+       </attribute>
+       <widget class="QCheckBox" name="checkBox_reverseLeftMotor">
+        <property name="geometry">
+         <rect>
+          <x>752</x>
+          <y>66</y>
+          <width>240</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Left Motor Direction</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_reverseRightMotor">
+        <property name="geometry">
+         <rect>
+          <x>752</x>
+          <y>88</y>
+          <width>251</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Right Motor Direction</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_reverseRightFeedback">
+        <property name="geometry">
+         <rect>
+          <x>752</x>
+          <y>150</y>
+          <width>254</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Right Motor Feedback</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_reverseFollowerFeedback">
+        <property name="geometry">
+         <rect>
+          <x>752</x>
+          <y>172</y>
+          <width>230</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Follower Feedback</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_reverseLeftFeedback">
+        <property name="geometry">
+         <rect>
+          <x>752</x>
+          <y>128</y>
+          <width>243</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reverse Left Motor Feedback</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_50">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>320</y>
+          <width>63</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Follower</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="follower_axis_error_limit">
+        <property name="geometry">
+         <rect>
+          <x>768</x>
+          <y>318</y>
+          <width>75</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0.1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="left_axis_error_limit">
+        <property name="geometry">
+         <rect>
+          <x>768</x>
+          <y>250</y>
+          <width>75</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0.1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_53">
+        <property name="geometry">
+         <rect>
+          <x>858</x>
+          <y>252</y>
+          <width>76</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Left Motor</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_54">
+        <property name="geometry">
+         <rect>
+          <x>858</x>
+          <y>286</y>
+          <width>87</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Right Motor</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="right_axis_error_limit">
+        <property name="geometry">
+         <rect>
+          <x>768</x>
+          <y>284</y>
+          <width>75</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0.1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>34</y>
+          <width>693</width>
+          <height>695</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Index Axis Scale Calculator</string>
+        </property>
+        <widget class="QLabel" name="label_47">
+         <property name="geometry">
+          <rect>
+           <x>378</x>
+           <y>178</y>
+           <width>214</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Jog Speed coutns/second</string>
+         </property>
+        </widget>
+        <widget class="QSlider" name="index_axis_speed_slider_2">
+         <property name="geometry">
+          <rect>
+           <x>382</x>
+           <y>202</y>
+           <width>246</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>190000</number>
+         </property>
+         <property name="singleStep">
+          <number>1500</number>
+         </property>
+         <property name="pageStep">
+          <number>15000</number>
+         </property>
+         <property name="value">
+          <number>10000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksBelow</enum>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="right_motor_counts">
+         <property name="geometry">
+          <rect>
+           <x>346</x>
+           <y>82</y>
+           <width>145</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="jog_index_rev_2">
+         <property name="geometry">
+          <rect>
+           <x>166</x>
+           <y>298</y>
+           <width>90</width>
+           <height>75</height>
+          </rect>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>REV</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::DownArrow</enum>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="calculate_index_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>424</x>
+           <y>330</y>
+           <width>143</width>
+           <height>65</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Calculate Scale</string>
+         </property>
+        </widget>
+        <widget class="QToolButton" name="jog_index_fwd_2">
+         <property name="geometry">
+          <rect>
+           <x>54</x>
+           <y>298</y>
+           <width>90</width>
+           <height>75</height>
+          </rect>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>FWD</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::UpArrow</enum>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="left_motor_counts">
+         <property name="geometry">
+          <rect>
+           <x>184</x>
+           <y>82</y>
+           <width>135</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_46">
+         <property name="geometry">
+          <rect>
+           <x>522</x>
+           <y>58</y>
+           <width>119</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Follower Counts</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_45">
+         <property name="geometry">
+          <rect>
+           <x>346</x>
+           <y>58</y>
+           <width>143</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Right Motor Counts</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="follower_counts">
+         <property name="geometry">
+          <rect>
+           <x>520</x>
+           <y>82</y>
+           <width>123</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="enable_index_axis_2">
+         <property name="geometry">
+          <rect>
+           <x>54</x>
+           <y>210</y>
+           <width>203</width>
+           <height>55</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>ENABLE</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>186</x>
+           <y>58</y>
+           <width>132</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Left Motor Counts</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="index_distance_jogged">
+         <property name="geometry">
+          <rect>
+           <x>410</x>
+           <y>286</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>418</x>
+           <y>256</y>
+           <width>154</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Distance Jogged (in)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="set_index_position_zero_2">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>32</x>
+           <y>52</y>
+           <width>110</width>
+           <height>75</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Set Position
+To Zero</string>
+         </property>
+        </widget>
+        <widget class="Line" name="line_2">
+         <property name="geometry">
+          <rect>
+           <x>28</x>
+           <y>430</y>
+           <width>619</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_56">
+         <property name="geometry">
+          <rect>
+           <x>34</x>
+           <y>512</y>
+           <width>155</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Result Left Motor:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_57">
+         <property name="geometry">
+          <rect>
+           <x>216</x>
+           <y>480</y>
+           <width>158</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Index Axis Scaling</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_58">
+         <property name="geometry">
+          <rect>
+           <x>386</x>
+           <y>512</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>cts/in</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_66">
+         <property name="geometry">
+          <rect>
+           <x>22</x>
+           <y>550</y>
+           <width>167</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Result Right Motor:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_67">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>588</y>
+           <width>139</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Result Follower:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_68">
+         <property name="geometry">
+          <rect>
+           <x>386</x>
+           <y>588</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>cts/in</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_69">
+         <property name="geometry">
+          <rect>
+           <x>386</x>
+           <y>548</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>cts/in</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="index_axis_left_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>208</x>
+           <y>510</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>-20223.73</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="index_axis_right_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>208</x>
+           <y>548</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>20223.73</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="follower_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>208</x>
+           <y>586</y>
+           <width>171</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>-1466.15</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="apply_index_axis_scaling_factor">
+         <property name="geometry">
+          <rect>
+           <x>242</x>
+           <y>632</y>
+           <width>93</width>
+           <height>43</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apply</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>492</x>
+           <y>510</y>
+           <width>157</width>
+           <height>107</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_86">
+            <property name="text">
+             <string>Other</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_87">
+            <property name="text">
+             <string>-58866.83</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_85">
+            <property name="text">
+             <string>RPVID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_92">
+            <property name="text">
+             <string>-20223.73</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_91">
+            <property name="text">
+             <string>20223.73</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_88">
+            <property name="text">
+             <string>58860.17</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_90">
+            <property name="text">
+             <string>-1466.15</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_89">
+            <property name="text">
+             <string>-1063.0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_59">
+        <property name="geometry">
+         <rect>
+          <x>768</x>
+          <y>222</y>
+          <width>127</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Error Limit (inch)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="apply_index_axis_error_limits">
+        <property name="geometry">
+         <rect>
+          <x>768</x>
+          <y>362</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Apply Error Limits</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_81">
+        <property name="geometry">
+         <rect>
+          <x>750</x>
+          <y>42</y>
+          <width>276</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CAUTION: Only Change w/ Motor Off</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Speeds/ Joystick</string>
+       </attribute>
+       <widget class="QLabel" name="label_51">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>110</y>
+          <width>491</width>
+          <height>431</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>xbox_gamepad.jpg</pixmap>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_52">
+        <property name="geometry">
+         <rect>
+          <x>32</x>
+          <y>240</y>
+          <width>217</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>BALANCE LEFT/RIGHT</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_3">
+        <property name="geometry">
+         <rect>
+          <x>258</x>
+          <y>246</y>
+          <width>133</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_4">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>110</y>
+          <width>4</width>
+          <height>117</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_55">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>70</y>
+          <width>116</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>INDEX FWD</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_5">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>272</y>
+          <width>16</width>
+          <height>259</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_60">
+        <property name="geometry">
+         <rect>
+          <x>358</x>
+          <y>538</y>
+          <width>109</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>INDEX REV</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_6">
+        <property name="geometry">
+         <rect>
+          <x>600</x>
+          <y>320</y>
+          <width>223</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_61">
+        <property name="geometry">
+         <rect>
+          <x>830</x>
+          <y>310</y>
+          <width>175</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>ROTATE CW/CCW</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_62">
+        <property name="geometry">
+         <rect>
+          <x>760</x>
+          <y>140</y>
+          <width>239</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>SCAN RIGHT (TRIGGER)</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_7">
+        <property name="geometry">
+         <rect>
+          <x>682</x>
+          <y>190</y>
+          <width>173</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_8">
+        <property name="geometry">
+         <rect>
+          <x>156</x>
+          <y>212</y>
+          <width>221</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_63">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>150</y>
+          <width>221</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>SCAN LEFT (TRIGGER)</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_9">
+        <property name="geometry">
+         <rect>
+          <x>154</x>
+          <y>188</y>
+          <width>5</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_10">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>118</y>
+          <width>5</width>
+          <height>125</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_64">
+        <property name="geometry">
+         <rect>
+          <x>558</x>
+          <y>86</y>
+          <width>119</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>LEFT BRAKE</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_11">
+        <property name="geometry">
+         <rect>
+          <x>854</x>
+          <y>170</y>
+          <width>5</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_12">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>250</y>
+          <width>181</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_65">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>240</y>
+          <width>137</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>RIGHT BRAKE</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Amplifier</string>
+       </attribute>
+       <widget class="QRadioButton" name="fault_scan">
+        <property name="geometry">
+         <rect>
+          <x>646</x>
+          <y>200</y>
+          <width>179</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Scan Axis Amp Fault</string>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cmd_text">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>648</y>
+          <width>129</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>L</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="varedan_select">
+        <property name="geometry">
+         <rect>
+          <x>54</x>
+          <y>628</y>
+          <width>118</width>
+          <height>49</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Scan Axis</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Index Axis</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="start_program">
+        <property name="geometry">
+         <rect>
+          <x>312</x>
+          <y>386</y>
+          <width>200</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Start Communcation
+with Amplifiers</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="help_cmds">
+        <property name="geometry">
+         <rect>
+          <x>36</x>
+          <y>484</y>
+          <width>140</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>List Help
+Commands</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="send_cmd">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>598</y>
+          <width>93</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send
+Command</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="clear_screen">
+        <property name="geometry">
+         <rect>
+          <x>198</x>
+          <y>386</y>
+          <width>93</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Clear 
+Screen</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="fault_index">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>644</x>
+          <y>140</y>
+          <width>185</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Index Axis Amp Fault</string>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="stop_program">
+        <property name="geometry">
+         <rect>
+          <x>312</x>
+          <y>484</y>
+          <width>200</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Stop Communication
+with Amplifiers</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="text_box">
+        <property name="geometry">
+         <rect>
+          <x>36</x>
+          <y>34</y>
+          <width>475</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="reset_drive">
+        <property name="geometry">
+         <rect>
+          <x>36</x>
+          <y>386</y>
+          <width>140</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reset Amplifier</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>262</x>
+          <y>618</y>
+          <width>129</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter Command:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_104">
+        <property name="geometry">
+         <rect>
+          <x>54</x>
+          <y>598</y>
+          <width>118</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Amplifier Select</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Tilt Control</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_19">
+        <property name="geometry">
+         <rect>
+          <x>26</x>
+          <y>350</y>
+          <width>1145</width>
+          <height>333</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Diagnostic Information</string>
+        </property>
+        <widget class="QCheckBox" name="invert_tilt_sensor">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>100</y>
+           <width>207</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Tilt Sensor Invert Status</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="tilt_sensor_select">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>46</y>
+           <width>73</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>INC X</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>INC Y</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="label_74">
+         <property name="geometry">
+          <rect>
+           <x>356</x>
+           <y>50</y>
+           <width>130</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Active Tilt Sensor</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="verticalLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>38</x>
+           <y>44</y>
+           <width>149</width>
+           <height>85</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_12">
+              <property name="text">
+               <string>Voltage SP:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="voltageSetpoint">
+              <property name="text">
+               <string>(V)</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Voltage Cmd:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="voltageCommand">
+              <property name="text">
+               <string>(V)</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_15">
+              <property name="text">
+               <string>Voltage Actual:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="voltageActual">
+              <property name="text">
+               <string>(V)</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QRadioButton" name="radio_x_active">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>772</x>
+           <y>68</y>
+           <width>140</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>X Active Status</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radio_y_active">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>772</x>
+           <y>92</y>
+           <width>140</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Y Active Status</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="gridLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>628</x>
+           <y>66</y>
+           <width>129</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_70">
+            <property name="text">
+             <string>INC X:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_71">
+            <property name="text">
+             <string>INC Y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="inc_y">
+            <property name="text">
+             <string>00.00</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="inc_x">
+            <property name="text">
+             <string>00.00</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_72">
+            <property name="text">
+             <string>(V)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_73">
+            <property name="text">
+             <string>(V)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QLabel" name="label_75">
+         <property name="geometry">
+          <rect>
+           <x>626</x>
+           <y>36</y>
+           <width>129</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Raw Sensor Data</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_95">
+         <property name="geometry">
+          <rect>
+           <x>862</x>
+           <y>216</y>
+           <width>59</width>
+           <height>42</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>PR:UP
+PU: Left</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_99">
+         <property name="geometry">
+          <rect>
+           <x>254</x>
+           <y>216</y>
+           <width>91</width>
+           <height>42</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>PD&amp;F: left
+PL&amp;F: Down</string>
+         </property>
+        </widget>
+        <widget class="QSlider" name="angle_setpoint_slider">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>424</x>
+           <y>226</y>
+           <width>375</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>5000</number>
+         </property>
+         <property name="value">
+          <number>2500</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_76">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>226</y>
+           <width>19</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>0V</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_93">
+         <property name="geometry">
+          <rect>
+           <x>816</x>
+           <y>226</y>
+           <width>19</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>5V</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_94">
+         <property name="geometry">
+          <rect>
+           <x>422</x>
+           <y>194</y>
+           <width>219</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Commanded Voltage Setpoint</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_20">
+        <property name="geometry">
+         <rect>
+          <x>24</x>
+          <y>34</y>
+          <width>1147</width>
+          <height>293</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>User Controllable Settings</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>32</y>
+           <width>359</width>
+           <height>175</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Settings for Auto Angle</string>
+         </property>
+         <widget class="QLabel" name="label_21">
+          <property name="geometry">
+           <rect>
+            <x>144</x>
+            <y>124</y>
+            <width>12</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>D</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_20">
+          <property name="geometry">
+           <rect>
+            <x>146</x>
+            <y>88</y>
+            <width>9</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>I</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="verticalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>26</x>
+            <y>48</y>
+            <width>105</width>
+            <height>103</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QLineEdit" name="kp_edit">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QLineEdit" name="ki_edit">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLineEdit" name="kd_edit">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_16"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>144</x>
+            <y>52</y>
+            <width>9</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>P</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_pid">
+          <property name="geometry">
+           <rect>
+            <x>202</x>
+            <y>60</y>
+            <width>107</width>
+            <height>63</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>SET</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QLabel" name="label_105">
+         <property name="geometry">
+          <rect>
+           <x>592</x>
+           <y>156</y>
+           <width>9</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>5</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_97">
+         <property name="geometry">
+          <rect>
+           <x>1008</x>
+           <y>156</y>
+           <width>27</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>100</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_96">
+         <property name="geometry">
+          <rect>
+           <x>592</x>
+           <y>92</y>
+           <width>442</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Angle Correction Intensity: Utilization of Balance Slider (%)</string>
+         </property>
+        </widget>
+        <widget class="QSlider" name="slider_angle_correction_intensity">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>132</y>
+           <width>443</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>Increase if tool can't hold angle, decreases if slipping wheels</string>
+         </property>
+         <property name="minimum">
+          <number>5</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>99</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="invertedAppearance">
+          <bool>false</bool>
+         </property>
+         <property name="invertedControls">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_9">
+       <attribute name="title">
+        <string>Galil Terminal</string>
+       </attribute>
+       <widget class="QLineEdit" name="cmd_text_edit">
+        <property name="geometry">
+         <rect>
+          <x>612</x>
+          <y>102</y>
+          <width>175</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SD ,,100000000</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="send_galil_cmd">
+        <property name="geometry">
+         <rect>
+          <x>822</x>
+          <y>100</y>
+          <width>157</width>
+          <height>75</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Send Command</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="response_text_edit">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>144</y>
+          <width>429</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_78">
+        <property name="geometry">
+         <rect>
+          <x>466</x>
+          <y>106</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Command to Send:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_79">
+        <property name="geometry">
+         <rect>
+          <x>158</x>
+          <y>146</y>
+          <width>194</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Response from Controller:</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>14</x>
+          <y>238</y>
+          <width>1155</width>
+          <height>36</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="error_mg">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clear_fault">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Clear Message</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Resolver Feedback</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_23">
+        <property name="geometry">
+         <rect>
+          <x>68</x>
+          <y>90</y>
+          <width>419</width>
+          <height>279</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Scan Motor Feedback</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox_24">
+         <property name="geometry">
+          <rect>
+           <x>174</x>
+           <y>26</y>
+           <width>235</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Diagnostics</string>
+         </property>
+         <widget class="QPushButton" name="vega_scan_fault_stauts">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>162</y>
+            <width>211</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Fault Stauts</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_scan_low_signal">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Low Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_scan_high_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>High Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_scan_timeout_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>211</width>
+            <height>35</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Timeout</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_25">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>26</y>
+           <width>147</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Input</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>58</y>
+            <width>125</width>
+            <height>77</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="vega_scan_high_gain">
+             <property name="text">
+              <string>High Gain</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_scan_medium_gain">
+             <property name="text">
+              <string>Medium Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_scan_low_gain">
+             <property name="text">
+              <string>Low Gain</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="vega_scan_reset">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>164</y>
+            <width>127</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_26">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>89</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Select Gain:</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_26">
+        <property name="geometry">
+         <rect>
+          <x>594</x>
+          <y>98</y>
+          <width>419</width>
+          <height>279</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Left Motor Feedback</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox_27">
+         <property name="geometry">
+          <rect>
+           <x>174</x>
+           <y>26</y>
+           <width>235</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Diagnostics</string>
+         </property>
+         <widget class="QPushButton" name="vega_left_fault_stauts">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>162</y>
+            <width>211</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Fault Stauts</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_left_low_signal">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Low Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_left_high_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>High Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_left_timeout_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>211</width>
+            <height>35</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Timeout</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_28">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>26</y>
+           <width>147</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Input</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>56</y>
+            <width>125</width>
+            <height>77</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="vega_left_high_gain">
+             <property name="text">
+              <string>High Gain</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_left_medium_gain">
+             <property name="text">
+              <string>Medium Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_left_low_gain">
+             <property name="text">
+              <string>Low Gain</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="vega_left_reset">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>162</y>
+            <width>127</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_98">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>89</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Select Gain:</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_29">
+        <property name="geometry">
+         <rect>
+          <x>596</x>
+          <y>406</y>
+          <width>419</width>
+          <height>279</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Right Motor Feedback</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox_30">
+         <property name="geometry">
+          <rect>
+           <x>174</x>
+           <y>26</y>
+           <width>235</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Diagnostics</string>
+         </property>
+         <widget class="QPushButton" name="vega_right_fault_stauts">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>164</y>
+            <width>211</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Fault Stauts</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_right_low_signal">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Low Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_right_high_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>High Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_right_timeout_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>211</width>
+            <height>35</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Timeout</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_31">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>26</y>
+           <width>147</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Input</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_4">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>58</y>
+            <width>125</width>
+            <height>77</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="vega_right_high_gain">
+             <property name="text">
+              <string>High Gain</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_right_medium_gain">
+             <property name="text">
+              <string>Medium Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_right_low_gain">
+             <property name="text">
+              <string>Low Gain</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="vega_right_reset">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>164</y>
+            <width>127</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_107">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>89</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Select Gain:</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_32">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>406</y>
+          <width>419</width>
+          <height>279</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Follower Feedback</string>
+        </property>
+        <widget class="QGroupBox" name="groupBox_33">
+         <property name="geometry">
+          <rect>
+           <x>174</x>
+           <y>26</y>
+           <width>235</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Diagnostics</string>
+         </property>
+         <widget class="QPushButton" name="vega_follower_fault_stauts">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>164</y>
+            <width>211</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Fault Stauts</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_follower_low_signal">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Low Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_follower_high_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>36</y>
+            <width>100</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>High Signal</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="vega_follower_timeout_signal">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>211</width>
+            <height>35</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Timeout</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_34">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>26</y>
+           <width>147</width>
+           <height>239</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Input</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_5">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>58</y>
+            <width>125</width>
+            <height>77</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="vega_follower_high_gain">
+             <property name="text">
+              <string>High Gain</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_follower_medium_gain">
+             <property name="text">
+              <string>Medium Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vega_follower_low_gain">
+             <property name="text">
+              <string>Low Gain</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="vega_follower_reset">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>164</y>
+            <width>127</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_106">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>89</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Select Gain:</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1921</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AnalogGaugeWidget</class>
+   <extends>QWidget</extends>
+   <header>analoggaugewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>left_soft_limit_edit</tabstop>
+  <tabstop>right_soft_limit_edit</tabstop>
+  <tabstop>follower_axis_error_limit</tabstop>
+  <tabstop>apply_index_axis_error_limits</tabstop>
+  <tabstop>checkBox_reverseLeftMotor</tabstop>
+  <tabstop>checkBox_reverseRightMotor</tabstop>
+  <tabstop>checkBox_reverseLeftFeedback</tabstop>
+  <tabstop>checkBox_reverseRightFeedback</tabstop>
+  <tabstop>checkBox_reverseFollowerFeedback</tabstop>
+  <tabstop>set_index_position_zero_2</tabstop>
+  <tabstop>enable_index_axis_2</tabstop>
+  <tabstop>index_distance_jogged</tabstop>
+  <tabstop>calculate_index_scaling_factor</tabstop>
+  <tabstop>index_axis_left_scaling_factor</tabstop>
+  <tabstop>index_axis_right_scaling_factor</tabstop>
+  <tabstop>follower_scaling_factor</tabstop>
+  <tabstop>apply_index_axis_scaling_factor</tabstop>
+  <tabstop>set_scan_position_zero_2</tabstop>
+  <tabstop>enable_scan_axis_2</tabstop>
+  <tabstop>scan_distance_jogged</tabstop>
+  <tabstop>calculate_scan_scaling_factor</tabstop>
+  <tabstop>scan_axis_scaling_factor</tabstop>
+  <tabstop>apply_scan_axis_scaling_factor</tabstop>
+  <tabstop>checkBox_reverseScanFeedback</tabstop>
+  <tabstop>scan_axis_error_limit</tabstop>
+  <tabstop>apply_scan_axis_error_limit</tabstop>
+  <tabstop>scan_options_scan_start</tabstop>
+  <tabstop>scan_options_scan_stop</tabstop>
+  <tabstop>scan_options_index_start</tabstop>
+  <tabstop>scan_options_index_size</tabstop>
+  <tabstop>scan_options_index_stop</tabstop>
+  <tabstop>auto_incline_check_box</tabstop>
+  <tabstop>stop_scan_axis</tabstop>
+  <tabstop>scan_axis_speed_edit</tabstop>
+  <tabstop>scan_axis_speed_slider</tabstop>
+  <tabstop>jog_right</tabstop>
+  <tabstop>jog_left</tabstop>
+  <tabstop>activate_gamepad_scan</tabstop>
+  <tabstop>scan_start_button</tabstop>
+  <tabstop>scan_stop_button</tabstop>
+  <tabstop>scan_resume_button</tabstop>
+  <tabstop>scan_pause_button</tabstop>
+  <tabstop>scan_options_scan_speed</tabstop>
+  <tabstop>scan_options_index_speed</tabstop>
+  <tabstop>uni_radio</tabstop>
+  <tabstop>bi_radio</tabstop>
+  <tabstop>set_soft_limits</tabstop>
+  <tabstop>move_scan_to_position</tabstop>
+  <tabstop>move_scan_to_edit</tabstop>
+  <tabstop>enable_scan_axis</tabstop>
+  <tabstop>move_scan_to_zero</tabstop>
+  <tabstop>scan_axis_sign_toggle</tabstop>
+  <tabstop>left_axis_error_limit</tabstop>
+  <tabstop>scan_options_scan_edit</tabstop>
+  <tabstop>scan_options_index_edit</tabstop>
+  <tabstop>scan_time_remaining_edit</tabstop>
+  <tabstop>activateAngle</tabstop>
+  <tabstop>center_angle_slider</tabstop>
+  <tabstop>deactivateAngle</tabstop>
+  <tabstop>estop</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>set_scan_position_zero</tabstop>
+  <tabstop>set_scan_position_edit</tabstop>
+  <tabstop>enable_index_axis</tabstop>
+  <tabstop>scan_axis_counts</tabstop>
+  <tabstop>jog_left_2</tabstop>
+  <tabstop>jog_index_fwd</tabstop>
+  <tabstop>jog_right_2</tabstop>
+  <tabstop>stop_index_axis</tabstop>
+  <tabstop>scan_axis_speed_slider_2</tabstop>
+  <tabstop>activate_gamepad_index</tabstop>
+  <tabstop>jog_index_rev</tabstop>
+  <tabstop>toggle_move_type</tabstop>
+  <tabstop>set_scan_position_to</tabstop>
+  <tabstop>right_axis_error_limit</tabstop>
+  <tabstop>set_index_position_zero</tabstop>
+  <tabstop>move_index_to_zero</tabstop>
+  <tabstop>index_axis_sign_toggle</tabstop>
+  <tabstop>set_index_position_edit</tabstop>
+  <tabstop>brake_left</tabstop>
+  <tabstop>set_index_position_to</tabstop>
+  <tabstop>move_index_to_position</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>index_axis_speed_slider_2</tabstop>
+  <tabstop>right_motor_counts</tabstop>
+  <tabstop>jog_index_rev_2</tabstop>
+  <tabstop>index_axis_speed_slider</tabstop>
+  <tabstop>jog_index_fwd_2</tabstop>
+  <tabstop>left_motor_counts</tabstop>
+  <tabstop>follower_counts</tabstop>
+  <tabstop>index_axis_balance_slider</tabstop>
+  <tabstop>center_balance_slider</tabstop>
+  <tabstop>brake_right</tabstop>
+  <tabstop>move_index_to_edit</tabstop>
+  <tabstop>fault_scan</tabstop>
+  <tabstop>cmd_text</tabstop>
+  <tabstop>varedan_select</tabstop>
+  <tabstop>start_program</tabstop>
+  <tabstop>help_cmds</tabstop>
+  <tabstop>send_cmd</tabstop>
+  <tabstop>clear_screen</tabstop>
+  <tabstop>fault_index</tabstop>
+  <tabstop>stop_program</tabstop>
+  <tabstop>text_box</tabstop>
+  <tabstop>reset_drive</tabstop>
+  <tabstop>set_pid</tabstop>
+  <tabstop>kp_edit</tabstop>
+  <tabstop>ki_edit</tabstop>
+  <tabstop>kd_edit</tabstop>
+  <tabstop>cmd_text_edit</tabstop>
+  <tabstop>send_galil_cmd</tabstop>
+  <tabstop>response_text_edit</tabstop>
+  <tabstop>index_balance_edit</tabstop>
+  <tabstop>index_axis_speed_edit</tabstop>
+  <tabstop>jog_index_cw</tabstop>
+  <tabstop>jog_index_ccw</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

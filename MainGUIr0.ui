@@ -615,7 +615,7 @@ X</string>
          <string notr="true">color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
-         <string>Position Error</string>
+         <string>Position Error %:</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_42">
@@ -685,7 +685,7 @@ X</string>
          <string notr="true">color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
-         <string>Position Error</string>
+         <string>Position Error %:</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_right_position_error">
@@ -1463,7 +1463,7 @@ N</string>
         </rect>
        </property>
        <property name="text">
-        <string>12.1</string>
+        <string>10</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -1495,7 +1495,7 @@ N</string>
         </rect>
        </property>
        <property name="text">
-        <string>-12.1</string>
+        <string>-10</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3120,7 +3120,7 @@ Motion Ctrl Faults</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
@@ -3324,7 +3324,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>71133.78</string>
+          <string>140130.0</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -4242,7 +4242,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>-20223.73</string>
+          <string>-122014.38</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -4258,7 +4258,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>20223.73</string>
+          <string>122013.33</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -4274,7 +4274,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>-1466.15</string>
+          <string>-1093.47</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

@@ -104,7 +104,9 @@ class VegaCard():
             self.timeout.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
 
     def report_fault(self):
-        return self.vega_has_faulted
+        # TIMC
+        # return self.vega_has_faulted
+        return False
 
 
 class VaredanFaults():
@@ -617,7 +619,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.serialThread.reported_serial_data.connect(self.display_serial_data)
         self.process_start_program()
         # Below updated for enclosure:
-        self.inclinometer = ThreadDataFetch(['MG @AN[1]', 'MG @AN[2]'], "Inclinometer")
+        # TIMC - analog feedback input is different
+        # self.inclinometer = ThreadDataFetch(['MG @AN[1]', 'MG @AN[2]'], "Inclinometer")
+        self.inclinometer = ThreadDataFetch(['MG @AN[1]', 'MG @AN[3]'], "Inclinometer")
         self.inclinometer.connection.reported_error_message.connect(self.error_mg.setText)
         self.activateAngle.pressed.connect(self.process_activateAngle)
         self.deactivateAngle.pressed.connect(self.process_deactivateAngle)
@@ -1115,6 +1119,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
     # Updates the enable scan button to be green/light grey when there is a state change, also updates position error
     def update_scan_axis_status(self, data):
         feedback_fault_scan = int(float(data[1]))
+
+        #TIMC - stop the creation of VEGA card fault
+        feedback_fault_scan = False
+
         # If there is a fault the process_enable_scan method will take appropriate steps
         if self.fault_scan.isChecked():
             self.process_enable_scan()
@@ -1410,6 +1418,11 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         feedback_fault_left = int(float(data[2]))
         feedback_fault_right = int(float(data[3]))
         feedback_fault_follower = int(float(data[4]))
+
+        # TIMC - stop creation of vega fault
+        feedback_fault_left = False
+        feedback_fault_right = False
+        feedback_fault_follower = False
 
         # If there is a fault the process_enable_index method will take appropriate steps.
         if self.fault_index.isChecked():
@@ -2590,6 +2603,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.angle_readout.set_scala_main_count(10)
             self.angle_readout.set_MinValue(-25)
             self.angle_readout.set_MaxValue(25)
+            self.angle_readout.angle_offset = 0
             self.angle_readout.set_enable_Needle_Polygon(True)
         elif is_sat_max(data["inc x"][0]) and is_sat_min(data["inc y"][0]):
             self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-right-arrow.ico"))
@@ -2653,7 +2667,8 @@ class ThreadUpdate(qtc.QThread):
             "scan mtr cur": ['N/A', 'MG _TTC'],
             "scan fault": ['N/A', 'MG @IN[1]'],
             "index fault": ['N/A', 'MG @IN[2]'],
-            "inc x": ['N/A', 'MG @AN[2]'],
+            # "inc x": ['N/A', 'MG @AN[2]'],
+            "inc x": ['N/A', 'MG @AN[3]'],
             "inc y": ['N/A', 'MG @AN[1]'],
             "estop": ['N/A', 'MG _AB']
         }

@@ -563,7 +563,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.mode_incremental_active = False
         self.mode_jogging_active = True  # GUI forces user to start in jogging mode
         self.incremental_move_in_position = False
-        # self.scan_axis_state = 0
+        self.scan_axis_state = 0
         self.sign_toggled_scan_axis = False
         self.sign_toggled_index_axis = False
         self.auto_angle_is_active = False
@@ -859,27 +859,19 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
     def process_jog_left(self):
         speed = -int(self.scan_axis_speed_slider.value())
-        # if self.checkBox_reverseScanMotor.isChecked():
-        #     speed = abs(speed)
-        #     self.scan_axis_state = 1
-        # else:
-        #     self.scan_axis_state = -1
+        self.scan_axis_state = -1
         self.gcmd('JG ,,' + str(speed))
         self.gcmd('BG C')
 
     def process_jog_right(self):
         speed = speed = int(self.scan_axis_speed_slider.value())
-        # if self.checkBox_reverseScanMotor.isChecked():
-        #     speed *= -1
-        #     self.scan_axis_state = -1
-        # else:
-        #     self.scan_axis_state = 1
+        self.scan_axis_state = 1
         self.gcmd('JG ,,' + str(speed))
         self.gcmd('BG C')
 
     def stop_scan_jog(self):
         self.gcmd('ST C')
-        # self.scan_axis_state = 0
+        self.scan_axis_state = 0
 
     def process_set_scan_position_zero(self):
         self.gcmd('DP ,,0')
@@ -922,8 +914,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
     def process_scan_axis_speed_slider_change(self):
         # speed = int(self.scan_axis_speed_control.value() * 1000000)
         speed = self.scan_axis_speed_slider.value()
-        # if self.scan_axis_state:
-        #     speed = speed * self.scan_axis_state
+        if self.scan_axis_state:
+            speed = speed * self.scan_axis_state
         if not int(float(self.gcmd('PTC=?'))):
             self.gcmd('JG ,,' + str(speed))
         else:
@@ -3143,7 +3135,6 @@ class MyGamepadThread(qtc.QThread):
                 self.scan_speed_updated.emit(self.scan_jog_speed_left)
             if self.s_right_scan_speed_changed:
                 self.scan_speed_updated.emit(self.scan_jog_speed_right)
-
             if self.s_final_left_movement or self.s_final_right_movement:
                 self.stopped_scan.emit()
                 self.scan_speed_updated.emit(self.scan_restore_speed)

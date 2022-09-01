@@ -1157,7 +1157,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         # Check if there is no position error
         elif not int(data[0]) & 64:
             if self.scan_axis_error:
-                self.label_scan_position_error.setStyleSheet("background-color: black; color: color: rgb(0,255,0)")
+                self.label_scan_position_error.setStyleSheet("background-color: black; color: rgb(0,255,0)")
                 self.scan_axis_error = False
 
     #############################
@@ -1468,7 +1468,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.index_left_axis_error = True
         elif not int(data[0]) & 64:
             if self.index_left_axis_error:
-                self.label_left_position_error.setStyleSheet("background-color: black; color: color: rgb(0,255,0)")
+                self.label_left_position_error.setStyleSheet("background-color: black; color: rgb(0,255,0)")
                 self.index_left_axis_error = False
 
         # Check if there is a position error on the right axis

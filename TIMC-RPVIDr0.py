@@ -598,6 +598,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.gcmd(
             'CN ,,,,1')  # Required so that when the ESTOP button is pressed, the serial program doesn't stop running
 
+        # Set the torque limit to 5A max commanded, LA-415 are configured to be 2A continuous, 12A instant
+        self.gcmd('TL 5,5,5')
         self.follower_target = 0
 
         if self.connection.connection_is_opened:
@@ -1147,7 +1149,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         # Check if there is no position error
         elif not int(data[0]) & 64:
             if self.scan_axis_error:
-                self.label_scan_position_error.setStyleSheet("background-color: black; color: white")
+                self.label_scan_position_error.setStyleSheet("background-color: black; color: color: rgb(0,255,0)")
                 self.scan_axis_error = False
 
     #############################
@@ -1453,7 +1455,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.index_left_axis_error = True
         elif not int(data[0]) & 64:
             if self.index_left_axis_error:
-                self.label_left_position_error.setStyleSheet("background-color: black; color: white")
+                self.label_left_position_error.setStyleSheet("background-color: black; color: color: rgb(0,255,0)")
                 self.index_left_axis_error = False
 
         # Check if there is a position error on the right axis
@@ -1463,7 +1465,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.index_right_axis_error = True
         elif not int(data[1]) & 64:
             if self.index_right_axis_error:
-                self.label_right_position_error.setStyleSheet("background-color: black; color: white")
+                self.label_right_position_error.setStyleSheet("background-color: black; color: color: rgb(0,255,0)")
                 self.index_right_axis_error = False
 
     def process_activate_gamepad_index(self):

@@ -3324,7 +3324,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>140130.0</string>
+          <string>36192.46</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -4274,7 +4274,7 @@ To Zero</string>
           </rect>
          </property>
          <property name="text">
-          <string>-1093.47</string>
+          <string>-1106.88</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

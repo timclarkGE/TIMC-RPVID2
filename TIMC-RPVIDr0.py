@@ -1399,7 +1399,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.gcmd('MO A,B')
         self.wait_for_index_disable.stop()
 
-    # TIM TODO: Do i need to disable the motors here if I get a VEGA card fault, also look into likewise with scan
     def update_index_axis_status(self, data):
         feedback_fault_left = int(float(data[2]))
         feedback_fault_right = int(float(data[3]))
@@ -1765,7 +1764,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 return
 
             # Check if Scan axis is in position
-            if self.scan_points[self.scan_point_index][0] == float(self.label_scan_position.text()):
+            position = float(self.label_scan_position.text())
+            if abs(self.scan_points[self.scan_point_index][0] - position) <= 0.02:
                 if DEBUG:
                     print("Scan axis is in position")
                 scan_in_position = True
@@ -1781,7 +1781,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.scan_wait_for_motion_complete.start()
                 return
             # Check if Index axis is in position
-            if self.scan_points[self.scan_point_index][1] == float(self.label_follower_position.text()):
+            position = float(self.label_follower_position.text())
+            # if self.scan_points[self.scan_point_index][1] == float(self.label_follower_position.text()):
+            if abs(self.scan_points[self.scan_point_index][1] - position) <= 0.02:
                 if DEBUG:
                     print("Index axis is in position")
                 index_in_position = True

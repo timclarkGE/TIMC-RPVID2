@@ -1,17 +1,17 @@
-import time
-
 from MainGUIr0 import Ui_MainWindow
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 from XInput import *
-import gclib
 from simple_pid import PID
+import sys
+import gclib
 
 # Backward and Forward Software Limits
 BL = -2147483648
 FL = 2147483647
 
+PYINSTALLER = False
 AT_HOME = True
 DEBUG = False
 
@@ -191,7 +191,7 @@ class Galil_Widget(qtc.QThread):
                 print("Galil Connection", self.index, "successful")
             self.connection_is_opened = True
         except gclib.GclibError as e:
-            print("Error making Galil Connection", Galil_Widget.connection_count)
+            print("Error making Galil Connection", Galil_Widget.connection_count, e)
             self.connection_is_opened = False
 
     def close(self):
@@ -510,8 +510,18 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.jog_index_rev_2.released.connect(self.stop_index_jog)
         self.jog_index_cw.released.connect(self.stop_index_jog)
         self.jog_index_ccw.released.connect(self.stop_index_jog)
-
         self.stop_index_axis.pressed.connect(self.stop_index_jog)
+
+        # Set Icons
+        if PYINSTALLER:
+            icon1 = qtg.QIcon()
+            icon1.addPixmap(qtg.QPixmap(sys.prefix + "./cw.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+            self.jog_index_cw.setIcon(icon1)
+
+            icon1 = qtg.QIcon()
+            icon1.addPixmap(qtg.QPixmap(sys.prefix + "./ccw.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+            self.jog_index_ccw.setIcon(icon1)
+
 
         # Check the status of axis Right, Left, Left VEGA, Right VEGA, Follower VEGA
         self.index_axis_status = ThreadDataFetch(['TSA', 'TSB', 'MG @IN[29]', 'MG @IN[30]', 'MG @IN[32]'],
@@ -605,7 +615,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.follower_target = 0
 
         if self.connection.connection_is_opened:
-            self.connection.g.GProgramDownloadFile('serial_communication.dmc', '')
+            if PYINSTALLER:
+                self.connection.g.GProgramDownloadFile(sys.prefix + './serial_communication.dmc', '')
+            else:
+                self.connection.g.GProgramDownloadFile('./serial_communication.dmc', '')
         self.stop_program.setEnabled(False)
         self.mainUpdateThread = ThreadUpdate("GUI Update")
         self.mainUpdateThread.connection.reported_error_message.connect(self.error_mg.setText)
@@ -679,11 +692,18 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
         self.index_axis_sign_toggle.clicked.connect(self.process_index_axis_sign_toggle)
         self.scan_axis_sign_toggle.clicked.connect(self.process_scan_axis_sign_toggle)
-        # self.index_sign_toggle.setLayout(qtw.QHBoxLayout())
+
         self.icon_minus = qtg.QIcon()
-        self.icon_minus.addPixmap(qtg.QPixmap("Icons/minus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
         self.icon_plus = qtg.QIcon()
-        self.icon_plus.addPixmap(qtg.QPixmap("Icons/plus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+        if PYINSTALLER:
+            self.icon_minus.addPixmap(qtg.QPixmap(sys.prefix + "./minus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+            self.icon_plus.addPixmap(qtg.QPixmap(sys.prefix + "./plus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+        else:
+            self.icon_minus.addPixmap(qtg.QPixmap("Icons/minus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+            self.icon_plus.addPixmap(qtg.QPixmap("Icons/plus.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
+
+        self.scan_axis_sign_toggle.setIcon(self.icon_plus)
+        self.index_axis_sign_toggle.setIcon(self.icon_plus)
 
         self.gamepad.gamepad_disconnected.connect(self.process_gamepad_disconnected)
         self.gamepad.gamepad_connected.connect(self.process_gamepad_connected)
@@ -692,6 +712,13 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.activate_gamepad_index.setVisible(False)
         self.activate_gamepad_scan.setVisible(False)
         self.gamepad.start()
+
+        if PYINSTALLER:
+            icon1 = qtg.QIcon()
+            icon1.addPixmap(qtg.QPixmap(sys.prefix + "./gamepad.png"), qtg.QIcon.Normal, qtg.QIcon.Off)
+            self.activate_gamepad_index.setIcon(icon1)
+            self.activate_gamepad_scan.setIcon(icon1)
+            self.label_51.setPixmap(qtg.QPixmap(sys.prefix + "./xbox_gamepad.jpg"))
 
         # Setup Scan Options
         self.scan_start_button.pressed.connect(self.process_scan_start_button)
@@ -1407,7 +1434,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.gcmd('MO A,B')
         self.wait_for_index_disable.stop()
 
-    # TIM TODO: Do i need to disable the motors here if I get a VEGA card fault, also look into likewise with scan
     def update_index_axis_status(self, data):
         feedback_fault_left = int(float(data[2]))
         feedback_fault_right = int(float(data[3]))
@@ -1778,7 +1804,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 return
 
             # Check if Scan axis is in position
-            if self.scan_points[self.scan_point_index][0] == float(self.label_scan_position.text()):
+            position = float(self.label_scan_position.text())
+            if abs(self.scan_points[self.scan_point_index][0] - position) <= 0.02:
                 if DEBUG:
                     print("Scan axis is in position")
                 scan_in_position = True
@@ -1794,7 +1821,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.scan_wait_for_motion_complete.start()
                 return
             # Check if Index axis is in position
-            if self.scan_points[self.scan_point_index][1] == float(self.label_follower_position.text()):
+            position = float(self.label_follower_position.text())
+            if abs(self.scan_points[self.scan_point_index][1] - position) <= 0.02:
                 if DEBUG:
                     print("Index axis is in position")
                 index_in_position = True
@@ -2213,12 +2241,12 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.scaling_scan_axis = sf
             self.scan_axis_scaling_factor.setStyleSheet("background-color: springgreen")
             self.process_apply_scan_axis_error_limit()
-            # Calculate the acceleration and deceleration by multiplying the scaling factor by 10
-            acdc = abs(sf * 3)
+            # Calculate the acceleration and deceleration by multiplying the scaling factor by 12 resulting in 0.25" slow down time at 3"/second
+            acdc = abs(sf * 12)
             self.gcmd('AC ,,' + str(acdc))
             self.gcmd('DC ,,' + str(acdc))
             # Increase the Soft Limit Deceleration to prevent overshoot at high speeds
-            self.gcmd('SD ,,' + str(acdc * 20))
+            self.gcmd('SD ,,' + str(acdc * 10))
             # Set the new soft limits
             self.process_set_soft_limits()
 
@@ -2567,7 +2595,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
         # Update an arrow which represents the tool orientation
         if is_active(data["inc x"][0]) and is_sat_min(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/right-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./right-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/right-arrow.ico"))
             self.orientation_state = "RIGHT"
             self.angle_readout.set_start_scale_angle(270)
             self.angle_readout.set_scala_main_count(6)
@@ -2575,7 +2606,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.angle_readout.set_MaxValue(15)
             self.angle_readout.set_enable_Needle_Polygon(True)
         elif is_active(data["inc x"][0]) and is_sat_max(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/left-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./left-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/left-arrow.ico"))
             self.orientation_state = "LEFT"
             self.angle_readout.set_start_scale_angle(90)
             self.angle_readout.set_scala_main_count(10)
@@ -2583,7 +2617,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.angle_readout.set_MaxValue(25)
             self.angle_readout.set_enable_Needle_Polygon(True)
         elif is_active(data["inc y"][0]) and is_sat_max(data["inc x"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./up-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-arrow.ico"))
             self.orientation_state = "UP"
             self.angle_readout.set_start_scale_angle(180)
             self.angle_readout.set_scala_main_count(6)
@@ -2591,7 +2628,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.angle_readout.set_MaxValue(15)
             self.angle_readout.set_enable_Needle_Polygon(True)
         elif is_active(data["inc y"][0]) and is_sat_min(data["inc x"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./down-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-arrow.ico"))
             self.orientation_state = "DOWN"
             self.angle_readout.set_start_scale_angle(0)
             self.angle_readout.set_scala_main_count(10)
@@ -2599,25 +2639,37 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.angle_readout.set_MaxValue(25)
             self.angle_readout.set_enable_Needle_Polygon(True)
         elif is_sat_max(data["inc x"][0]) and is_sat_min(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-right-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./up-right-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-right-arrow.ico"))
             self.angle_readout.set_enable_Needle_Polygon(False)
             # Check if the auto angle routine is running and turn it off
             if self.inclinometer.isRunning():
                 self.process_deactivateAngle()
         elif is_sat_max(data["inc x"][0]) and is_sat_max(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-left-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./up-left-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/up-left-arrow.ico"))
             self.angle_readout.set_enable_Needle_Polygon(False)
             # Check if the auto angle routine is running and turn it off
             if self.inclinometer.isRunning():
                 self.process_deactivateAngle()
         elif is_sat_min(data["inc x"][0]) and is_sat_max(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-left-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./down-left-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-left-arrow.ico"))
             self.angle_readout.set_enable_Needle_Polygon(False)
             # Check if the auto angle routine is running and turn it off
             if self.inclinometer.isRunning():
                 self.process_deactivateAngle()
         elif is_sat_min(data["inc x"][0]) and is_sat_min(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-right-arrow.ico"))
+            if PYINSTALLER:
+                self.tool_orientation.setPixmap(qtg.QPixmap(sys.prefix + "./down-right-arrow.ico"))
+            else:
+                self.tool_orientation.setPixmap(qtg.QPixmap("Icons/down-right-arrow.ico"))
             self.angle_readout.set_enable_Needle_Polygon(False)
             # Check if the auto angle routine is running and turn it off
             if self.inclinometer.isRunning():

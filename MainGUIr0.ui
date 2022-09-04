@@ -3115,7 +3115,7 @@ Motion Ctrl Faults</string>
        <rect>
         <x>60</x>
         <y>76</y>
-        <width>1193</width>
+        <width>1261</width>
         <height>819</height>
        </rect>
       </property>
@@ -3552,46 +3552,6 @@ To Zero</string>
          <string>Apply</string>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>542</x>
-          <y>566</y>
-          <width>125</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_80">
-           <property name="text">
-            <string>58448.73</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_82">
-           <property name="text">
-            <string>RPVID</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_84">
-           <property name="text">
-            <string>71133.78</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_83">
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
        <widget class="QCheckBox" name="checkBox_reverseScanMotor">
         <property name="geometry">
          <rect>
@@ -3603,6 +3563,83 @@ To Zero</string>
         </property>
         <property name="text">
          <string>Reverse Scan Motor Direction</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="scan_axis_current_limit_slider">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>302</y>
+          <width>275</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_102">
+        <property name="geometry">
+         <rect>
+          <x>544</x>
+          <y>302</y>
+          <width>20</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1A</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_103">
+        <property name="geometry">
+         <rect>
+          <x>868</x>
+          <y>302</y>
+          <width>20</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>5A</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_108">
+        <property name="geometry">
+         <rect>
+          <x>548</x>
+          <y>268</y>
+          <width>207</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Instantaneous Current Limit</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="scan_axis_current_limit_edit">
+        <property name="geometry">
+         <rect>
+          <x>924</x>
+          <y>298</y>
+          <width>55</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </widget>
@@ -4402,6 +4439,83 @@ To Zero</string>
         </property>
         <property name="text">
          <string>CAUTION: Only Change w/ Motor Off</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QSlider" name="index_axis_current_limit_slider">
+        <property name="geometry">
+         <rect>
+          <x>798</x>
+          <y>516</y>
+          <width>275</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_109">
+        <property name="geometry">
+         <rect>
+          <x>762</x>
+          <y>516</y>
+          <width>20</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1A</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_110">
+        <property name="geometry">
+         <rect>
+          <x>1086</x>
+          <y>516</y>
+          <width>20</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>5A</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_111">
+        <property name="geometry">
+         <rect>
+          <x>766</x>
+          <y>482</y>
+          <width>207</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Instantaneous Current Limit</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="index_axis_current_limit_edit">
+        <property name="geometry">
+         <rect>
+          <x>1142</x>
+          <y>512</y>
+          <width>55</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

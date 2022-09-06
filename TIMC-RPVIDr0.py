@@ -11,7 +11,7 @@ import gclib
 BL = -2147483648
 FL = 2147483647
 
-PYINSTALLER = False
+PYINSTALLER = True
 AT_HOME = True
 DEBUG = False
 

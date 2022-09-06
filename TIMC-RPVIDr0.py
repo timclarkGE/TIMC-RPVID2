@@ -11,7 +11,7 @@ import gclib
 BL = -2147483648
 FL = 2147483647
 
-PYINSTALLER = True
+PYINSTALLER = False
 AT_HOME = True
 DEBUG = False
 
@@ -51,15 +51,12 @@ class VegaCard():
         if self.high_gain.isChecked():
             self.connection.gcmd('CB ' + self.jumper_11)
             self.connection.gcmd('CB ' + self.jumper_12)
-            print("Set gain high")
         elif self.medium_gain.isChecked():
             self.connection.gcmd('CB ' + self.jumper_11)
             self.connection.gcmd('SB ' + self.jumper_12)
-            print("set gain medium")
         elif self.low_gain.isChecked():
             self.connection.gcmd('SB ' + self.jumper_11)
             self.connection.gcmd('CB ' + self.jumper_12)
-            print("set gain low")
 
     def reset_vega(self):
         # Check the bit state, if it is set the output will be 1
@@ -1039,7 +1036,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         motor_c_status = not int(float(self.gcmd('MG _MOC')))
         feedback_fault_scan = self.vega_scan.report_fault()
 
-        # Servo the motors if the bus is off and there is not an amplifier fault
+        # Servo the motors if there is not an amplifier fault
         if not self.fault_scan.isChecked() and not feedback_fault_scan:
             # Motor is disabled
             if not motor_c_status:
@@ -1239,7 +1236,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_scan_axis.setStyleSheet("background-color: red")
                 self.enable_scan_axis_2.setStyleSheet("background-color: red")
 
-        # Check if motor is off
+        # Check if motor is off, set enable button to grey
         elif int(data[0]) & 32:
             if self.scan_axis_is_enabled:
                 self.scan_axis_is_enabled = False
@@ -1249,9 +1246,11 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_scan_axis_2.setStyleSheet("")
         # Check if motor is on
         elif not int(data[0]) & 32:
-            if not self.scan_axis_is_enabled:
+            # Set the enabled variable if there are no VEGA card fault, and no amplifier fault
+            if not self.scan_axis_is_enabled and not self.fault_scan.isChecked():
                 self.scan_axis_is_enabled = True
-            if not "green" in self.enable_scan_axis.styleSheet():
+            # Set green if no VEGA card fault, and no amplifier fault
+            if not "green" in self.enable_scan_axis.styleSheet() and not self.fault_scan.isChecked():
                 self.enable_scan_axis.setStyleSheet("background-color: green")
                 self.enable_scan_axis_2.setStyleSheet("background-color: green")
 
@@ -1570,9 +1569,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_index_axis_2.setStyleSheet("")
         # Check if motors are on
         elif not int(data[0]) & 32 and not int(data[1]) & 32:
-            if not self.index_axis_is_enabled:
+            if not self.index_axis_is_enabled and not self.fault_index.isChecked():
                 self.index_axis_is_enabled = True
-            if not "green" in self.enable_index_axis.styleSheet():
+            if not "green" in self.enable_index_axis.styleSheet() and not self.fault_index.isChecked():
                 self.enable_index_axis.setStyleSheet("background-color: green")
                 self.enable_index_axis_2.setStyleSheet("background-color: green")
 

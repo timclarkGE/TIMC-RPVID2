@@ -11,7 +11,7 @@ import platform #for distinguishing 'Windows', 'Linux', 'Darwin'
 from ctypes import *
 import sys
 
-PYINSTALLER = True
+PYINSTALLER = False
 
 if platform.system() == 'Windows':
     if '64 bit' in platform.python_compiler():

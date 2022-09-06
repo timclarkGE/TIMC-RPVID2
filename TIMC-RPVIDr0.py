@@ -201,20 +201,26 @@ class Galil_Widget(qtc.QThread):
 
 
 class NonNullEdits:
-    def __init__(self, edits: [qtw.QLineEdit]):
-        self.edits = edits
+    def __init__(self, edit: qtw.QLineEdit):
+        self.edit = edit
         self.edit_validator = qtg.QDoubleValidator()
-        self.edit_validator.setNotation(qtg.QDoubleValidator.StandardNotation)
-        for i in range(len(self.edits)):
-            self.edits[i].setValidator(self.edit_validator)
-            # self.edits[i].textChanged.connect(self.update_text)
-        self.update_text()
+        self.edit_validator.setNotation(self.edit_validator.StandardNotation)
+        self.edit.setValidator(self.edit_validator)
+        self.edit.textChanged.connect(self.comma_check)
+        self.comma_check()
+        self.incomplete_check()
 
-    # Checks all line edits and if there is a Null string then it inserts a "0"
-    def update_text(self):
-        for i in range(len(self.edits)):
-            if self.edits[i].text() == "":
-                self.edits[i].setText("0")
+    def comma_check(self, text_input=""):
+        # If there is a comma remove it from the text
+        if "," in text_input:
+            text = self.edit.text()
+            text = text.replace(',', "")
+            self.edit.setText(text)
+
+    def incomplete_check(self):
+        # Don't allow for no text
+        if self.edit.text() == "" or self.edit.text() == "." or self.edit.text() == "-" or self.edit.text() == "+":
+            self.edit.setText("0.00")
 
 
 class ApplyEdits:
@@ -260,26 +266,28 @@ class SliderWithEdit:
     def __init__(self, slider: qtw.QSlider, edit: qtw.QLineEdit, max_allowed):
         self.slider = slider
         self.edit = edit
-        self.max_allowed = max_allowed  # Inches
+        self.max_allowed = max_allowed  # Inches or Amps
         self.conversion_factor = self.slider.maximum() / max_allowed  # Slider Counts/tool units
         self.edit.textChanged.connect(self.update_slider)  # Updates slider right away with each new number
         self.slider.valueChanged.connect(self.update_text)
         self.validator = qtg.QDoubleValidator()
-        self.validator.setRange(0, self.max_allowed, 2)
+        self.validator.setRange(0, self.max_allowed)
         self.validator.setNotation(self.validator.StandardNotation)
         self.edit.setValidator(self.validator)
-        self.edit.setText(str(0.25 * max_allowed * self.conversion_factor))
+        self.edit.setText(str(2.00))
 
     # Update the slider to be the value from the text box edited by the user
     def update_slider(self):
-        if self.edit.text() == "":
-            self.slider.setValue(self.slider.minimum())
-            self.edit.setText("0")
-        elif 0 <= float(self.edit.text()) <= self.max_allowed:
-            self.slider.setValue(int(float(self.edit.text()) * self.conversion_factor))
-        elif float(self.edit.text()) > self.max_allowed:
-            self.slider.setValue(self.slider.maximum())
-            self.edit.setText(str(self.max_allowed) + "0")
+        if self.edit.text() != "" and self.edit.text() != "." and self.edit.text() != "+" and self.edit.text() != "-":
+            if 0 < float(self.edit.text()) <= self.max_allowed:
+                self.slider.setValue(int(float(self.edit.text()) * self.conversion_factor))
+            elif float(self.edit.text()) > self.max_allowed:
+                self.slider.setValue(self.slider.maximum())
+                self.edit.setText(str(self.max_allowed) + "0")
+            elif self.edit.text() == "0.00":
+                self.slider.setValue(self.slider.minimum())
+            elif self.edit.text() == "0" or self.edit.text() == "00" or self.edit.text() == "0.0" or self.edit.text() == "0.":
+                self.slider.setValue(self.slider.minimum())
 
     # Update the text when the slider bar has been moved
     def update_text(self):
@@ -354,6 +362,39 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
 
+        # Setup the edit boxes so the user can't enter bad information
+        self.myEdits = []
+        edits = [self.set_index_position_edit,
+                 self.move_index_to_edit,
+                 self.set_scan_position_edit,
+                 self.move_scan_to_edit,
+                 self.right_soft_limit_edit,
+                 self.left_soft_limit_edit,
+                 self.scan_options_scan_start,
+                 self.scan_options_scan_stop,
+                 self.scan_options_index_start,
+                 self.scan_options_index_size,
+                 self.scan_options_index_stop,
+                 self.scan_distance_jogged,
+                 self.index_distance_jogged,
+                 self.scan_axis_error_limit,
+                 self.follower_axis_error_limit,
+                 self.left_axis_error_limit,
+                 self.right_axis_error_limit,
+                 self.commanded_angle,
+                 self.set_scan_position_edit,
+                 self.scan_axis_speed_edit,
+                 self.index_axis_speed_edit,
+                 self.scan_options_scan_edit,
+                 self.scan_options_index_edit,
+                 self.scan_axis_current_limit_edit,
+                 self.index_axis_current_limit_edit,
+                 self.max_scan_gamepad_speed_edit,
+                 self.max_index_gamepad_speed_edit,
+                 ]
+        for i in range(len(edits)):
+            self.myEdits.append(NonNullEdits(edits[i]))
+
         self.index_axis_speed_control = SliderWithEdit(self.index_axis_speed_slider, self.index_axis_speed_edit, 3.0)
         self.index_axis_balance_control = BalanceWithEdit(self.index_axis_balance_slider, self.index_balance_edit)
         self.scan_axis_speed_control = SliderWithEdit(self.scan_axis_speed_slider, self.scan_axis_speed_edit, 3.0)
@@ -362,6 +403,15 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.scan_options_index_speed_control = SliderWithEdit(self.scan_options_index_speed,
                                                                self.scan_options_index_edit,
                                                                1.0)
+        self.scan_axis_torque_control = SliderWithEdit(self.scan_axis_current_limit_slider,
+                                                       self.scan_axis_current_limit_edit, 5)
+        self.index_axis_torque_control = SliderWithEdit(self.index_axis_current_limit_slider,
+                                                        self.index_axis_current_limit_edit, 5)
+        self.scan_gamepad_speed_control = SliderWithEdit(self.max_scan_gamepad_speed_slider,
+                                                         self.max_scan_gamepad_speed_edit, 3)
+        self.index_gamepad_speed_control = SliderWithEdit(self.max_index_gamepad_speed_slider,
+                                                          self.max_index_gamepad_speed_edit, 3)
+
 
         # Setup Left VEGA Card
         gui_input = [self.vega_left_high_gain,
@@ -415,26 +465,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         io_input = ["40", "47", "48", "32", "24", "28", "20"]
         self.vega_follower = VegaCard(gui_input, io_input)
 
-        # Setup the edit boxes so the user can't enter bad information
-        self.myEdits = NonNullEdits([self.set_index_position_edit,
-                                     self.move_index_to_edit,
-                                     self.set_scan_position_edit,
-                                     self.move_scan_to_edit,
-                                     self.right_soft_limit_edit,
-                                     self.left_soft_limit_edit,
-                                     self.scan_options_scan_start,
-                                     self.scan_options_scan_stop,
-                                     self.scan_options_index_start,
-                                     self.scan_options_index_size,
-                                     self.scan_options_index_stop,
-                                     self.scan_distance_jogged,
-                                     self.index_distance_jogged,
-                                     self.scan_axis_error_limit,
-                                     self.follower_axis_error_limit,
-                                     self.left_axis_error_limit,
-                                     self.right_axis_error_limit,
-                                     self.commanded_angle])
-
         self.udpated_edit_0 = ApplyEdits(self.scan_axis_scaling_factor)
         self.udpated_edit_1 = ApplyEdits(self.scan_axis_error_limit)
         self.udpated_edit_2 = ApplyEdits(self.index_axis_left_scaling_factor)
@@ -447,8 +477,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.updated_edit_9 = ApplyEdits(self.ki_edit)
         self.updated_edit_10 = ApplyEdits(self.kd_edit)
 
-        # If the user has cleared out a line edit, fill the edit with "0" when they change focus
-        app.focusChanged.connect(self.myEdits.update_text)
+        # If the user has cleared out a line edit or left it with a minus sign and has clicked away, fill it with a 0
+        app.focusChanged.connect(self.focus_changed_checks)
 
         # Setup Scan Axis
         self.wait_for_scan_disable = ThreadWaitForMotionComplete("C")
@@ -519,7 +549,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             icon1 = qtg.QIcon()
             icon1.addPixmap(qtg.QPixmap(sys.prefix + "./ccw.ico"), qtg.QIcon.Normal, qtg.QIcon.Off)
             self.jog_index_ccw.setIcon(icon1)
-
 
         # Check the status of axis Right, Left, Left VEGA, Right VEGA, Follower VEGA
         self.index_axis_status = ThreadDataFetch(['TSA', 'TSB', 'MG @IN[29]', 'MG @IN[30]', 'MG @IN[32]'],
@@ -659,9 +688,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                                        self.gamepad_enabled_for_index, self.gamepad_enabled_for_scan)
         self.gamepad.jogged_forward.connect(self.jog_index_fwd.pressed)
         self.gamepad.jogged_reverse.connect(self.jog_index_rev.pressed)
-        self.gamepad.index_speed_updated.connect(
-            lambda speed: self.index_axis_speed_slider.setValue(
-                abs(int(self.index_axis_speed_slider.maximum() * speed))))
+        self.gamepad.index_speed_updated.connect(self.process_gamepad_index_speed_updated)
         self.gamepad.differential_updated.connect(
             lambda dif: self.index_axis_balance_slider.setValue(int(self.index_axis_balance_slider.maximum() * dif)))
         self.gamepad.stopped_jog.connect(self.stop_index_jog)
@@ -683,9 +710,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.gamepad.jogged_left.connect(self.jog_left.pressed)
         self.gamepad.jogged_right.connect(self.jog_right.pressed)
         self.gamepad.stopped_scan.connect(self.stop_scan_jog)
-        self.gamepad.scan_speed_updated.connect(
-            lambda speed: self.scan_axis_speed_slider.setValue(abs(int(self.scan_axis_speed_slider.maximum() * speed))))
-
+        self.gamepad.scan_speed_updated.connect(self.process_gamepad_scan_speed_updated)
         self.index_axis_sign_toggle.clicked.connect(self.process_index_axis_sign_toggle)
         self.scan_axis_sign_toggle.clicked.connect(self.process_scan_axis_sign_toggle)
 
@@ -742,6 +767,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.checkBox_reverseScanFeedback.clicked.connect(self.process_checkBox_reverseScanFeedback)
         self.checkBox_reverseScanMotor.clicked.connect(self.process_checkBox_reverseScanMotor)
         self.apply_scan_axis_error_limit.pressed.connect(self.process_apply_scan_axis_error_limit)
+        self.scan_axis_current_limit_slider.valueChanged.connect(self.process_scan_axis_current_limit_slider_change)
+        self.scan_axis_torque_control.edit.setText("3.00")  # Init current limit at 3A
 
         # Setup Index Axis Setup
         self.calculate_index_scaling_factor.pressed.connect(self.process_calculate_index_scaling_factor)
@@ -752,6 +779,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.checkBox_reverseLeftMotor.clicked.connect(self.process_checkBox_reverseLeftMotor)
         self.checkBox_reverseRightMotor.clicked.connect(self.process_checkBox_reverseRightMotor)
         self.apply_index_axis_error_limits.pressed.connect(self.process_apply_index_axis_error_limits)
+        self.index_axis_current_limit_slider.valueChanged.connect(self.process_index_axis_current_limit_slider_change)
+        self.index_axis_torque_control.edit.setText("3.00")  # Init current limit at 3A
 
         self.clear_fault.pressed.connect(lambda: self.error_mg.setText(""))
 
@@ -833,21 +862,34 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.process_refresh_index_faults()
         self.ack_mc_faults.pressed.connect(self.process_ack_mc_faults)
 
+    # Called when the user changes focus to see if any line edits have invalid input
+    def focus_changed_checks(self):
+        for i in range(len(self.myEdits)):
+            self.myEdits[i].incomplete_check()
+
     #############################
     # Fault Processing Methods #
     #############################
     def process_ack_mc_faults(self):
-        self.enable_gui_after_fault()
-        self.estop.setStyleSheet("background-color: light grey")
+
         font = qtg.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.cb_software_estop.setFont(font)
-        self.cb_software_estop.setChecked(False)
-        self.cb_hardware_estop.setFont(font)
-        self.cb_hardware_estop.setChecked(False)
-        if self.hardware_estop_state:
-            self.hardware_estop_state = False
+        if self.cb_software_estop.isChecked():
+            self.cb_software_estop.setFont(font)
+            self.cb_software_estop.setChecked(False)
+            self.enable_gui_after_estop_fault()  # TIM this needs to go somewhere else
+            self.estop.setStyleSheet("background-color: light grey")
+        if self.cb_hardware_estop.isChecked():
+            self.cb_hardware_estop.setFont(font)
+            self.cb_hardware_estop.setChecked(False)
+            self.enable_gui_after_estop_fault()
+            self.estop.setStyleSheet("background-color: light grey")
+            # Change the hardware ESTOP, this will get enabled again if ESTOP is still pressed
+            if self.hardware_estop_state:
+                self.hardware_estop_state = False
+
+        # Clear vega feedback faults as they will get enabled again automatically
         self.cb_left_fb_fault.setChecked(False)
         self.cb_left_fb_fault.setFont(font)
         self.cb_right_fb_fault.setChecked(False)
@@ -857,6 +899,37 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.cb_follower_fb_fault.setChecked(False)
         self.cb_follower_fb_fault.setFont(font)
 
+        # Left position fault
+        if self.cb_left_position_fault.isChecked():
+            self.cb_left_position_fault.setChecked(False)
+            self.cb_left_position_fault.setFont(font)
+            self.enable_index_axis.setEnabled(True)
+
+        # Right position fault
+        if self.cb_right_position_fault.isChecked():
+            self.cb_right_position_fault.setChecked(False)
+            self.cb_right_position_fault.setFont(font)
+            self.enable_index_axis.setEnabled(True)
+
+        # Scan position fault
+        if self.cb_scan_position_fault.isChecked():
+            self.cb_scan_position_fault.setChecked(False)
+            self.cb_scan_position_fault.setFont(font)
+            self.enable_scan_axis.setEnabled(True)
+
+        if self.cb_follower_position_fault.isChecked():
+            self.cb_follower_position_fault.setChecked(False)
+            self.cb_follower_position_fault.setFont(font)
+            # Return jogging buttons to normal for index axis
+            self.move_index_to_zero.setEnabled(True)
+            self.move_index_to_position.setEnabled(True)
+            self.toggle_move_type.setEnabled(True)
+            self.jog_index_ccw.setEnabled(True)
+            self.jog_index_cw.setEnabled(True)
+            self.jog_index_fwd.setEnabled(True)
+            self.jog_index_rev.setEnabled(True)
+            self.enable_incremental_moves()
+
     def process_software_estop(self):
         self.gcmd('AB 1')
         self.estop.setStyleSheet("background-color: red")
@@ -865,9 +938,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         font.setWeight(75)
         self.cb_software_estop.setFont(font)
         self.cb_software_estop.setChecked(True)
-        self.disable_gui_for_fault()
+        self.disable_gui_from_estop_fault()
 
-    def process_hardware_stop(self):
+    def process_hardware_estop(self):
         if not self.hardware_estop_state:
             self.estop.setStyleSheet("background-color: red")
             font = qtg.QFont()
@@ -875,7 +948,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             font.setWeight(75)
             self.cb_hardware_estop.setFont(font)
             self.cb_hardware_estop.setChecked(True)
-            self.disable_gui_for_fault()
+            self.disable_gui_from_estop_fault()
             self.hardware_estop_state = True
 
     def keyPressEvent(self, event):
@@ -925,9 +998,11 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
     def process_set_soft_limits(self):
         # Check if the change was from impartial input from the user
-        if self.left_soft_limit_edit.text() == "" or self.left_soft_limit_edit.text() == "-":
+        left = self.left_soft_limit_edit.text()
+        right = self.right_soft_limit_edit.text()
+        if left == "" or left == "-" or left == "." or left == "+":
             return
-        if self.right_soft_limit_edit.text() == "" or self.right_soft_limit_edit.text() == "-":
+        if right == "" or right == "-" or right == "." or right == "+":
             return
 
         # Either the user has entered valid data or the state of the checkbox has been changed
@@ -992,6 +1067,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if not self.activate_gamepad_scan.isVisible():
             self.activate_gamepad_scan.setVisible(True)
         elif self.activate_gamepad_scan.isChecked():
+            factor = float(self.max_scan_gamepad_speed_edit.text()) / 3
+            current_value = self.scan_axis_speed_control.slider.value()
+            self.scan_axis_speed_control.slider.setValue(int(current_value / factor))
             self.enable_jogging_buttons_scan()
             self.gamepad_enabled_for_scan.emit(False)
             self.stop_scan_jog()
@@ -1172,12 +1250,23 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if int(data[0]) & 64:
             if not self.scan_axis_error:
                 self.label_scan_position_error.setStyleSheet("background-color: red")
-                self.scan_axis_error = True
+                self.cb_scan_position_fault.setChecked(True)
+                font = qtg.QFont()
+                font.setBold(True)
+                font.setWeight(75)
+                self.cb_scan_position_fault.setFont(font)
+                if not self.scan_axis_error:
+                    self.scan_axis_error = True
+                    self.enable_scan_axis.setEnabled(False)
         # Check if there is no position error
         elif not int(data[0]) & 64:
             if self.scan_axis_error:
                 self.label_scan_position_error.setStyleSheet("background-color: black; color: rgb(0,255,0)")
                 self.scan_axis_error = False
+
+    def process_gamepad_scan_speed_updated(self, speed):
+        throttled_speed = (float(self.max_scan_gamepad_speed_edit.text()) / 3) * speed
+        self.scan_axis_speed_slider.setValue(abs(int(self.scan_axis_speed_slider.maximum() * throttled_speed)))
 
     #############################
     # Index Axis Related Methods #
@@ -1321,6 +1410,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         # Brakes are false in jogging mode and only become active when movement is happening
         self.brake_left.setEnabled(False)
         self.brake_right.setEnabled(False)
+        self.set_index_position_zero.setEnabled(True)
+        self.set_index_position_to.setEnabled(True)
 
         # Set state variables
         self.mode_incremental_active = False
@@ -1336,6 +1427,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.jog_index_rev.setEnabled(False)
         self.brake_left.setEnabled(True)
         self.brake_right.setEnabled(True)
+        self.set_index_position_zero.setEnabled(False)
+        self.set_index_position_to.setEnabled(False)
 
         # Set state variables
         self.mode_incremental_active = True
@@ -1478,7 +1571,14 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if int(data[0]) & 64:
             if not self.index_left_axis_error:
                 self.label_left_position_error.setStyleSheet("background-color: red")
-                self.index_left_axis_error = True
+                self.cb_left_position_fault.setChecked(True)
+                font = qtg.QFont()
+                font.setBold(True)
+                font.setWeight(75)
+                self.cb_left_position_fault.setFont(font)
+                if not self.index_left_axis_error:
+                    self.index_left_axis_error = True
+                    self.enable_index_axis.setEnabled(False)
         elif not int(data[0]) & 64:
             if self.index_left_axis_error:
                 self.label_left_position_error.setStyleSheet("background-color: black; color: rgb(0,255,0)")
@@ -1488,7 +1588,14 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if int(data[1]) & 64:
             if not self.index_right_axis_error:
                 self.label_right_position_error.setStyleSheet("background-color: red")
-                self.index_right_axis_error = True
+                self.cb_right_position_fault.setChecked(True)
+                font = qtg.QFont()
+                font.setBold(True)
+                font.setWeight(75)
+                self.cb_right_position_fault.setFont(font)
+                if not self.index_right_axis_error:
+                    self.index_right_axis_error = True
+                    self.enable_index_axis.setEnabled(False)
         elif not int(data[1]) & 64:
             if self.index_right_axis_error:
                 self.label_right_position_error.setStyleSheet("background-color: black; color: rgb(0,255,0)")
@@ -1500,6 +1607,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.activate_gamepad_index.setVisible(True)
         # If the gamepad button is checked then exit gamepad mode
         elif self.activate_gamepad_index.isChecked():
+            factor = float(self.max_index_gamepad_speed_edit.text()) / 3
+            current_value = self.index_axis_speed_control.slider.value()
+            self.index_axis_speed_control.slider.setValue(int(current_value / factor))
             self.enable_jogging_moves()
             self.toggle_move_type.setEnabled(True)
             self.gamepad_enabled_for_index.emit(False)
@@ -1722,6 +1832,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.right_axis_error_limit.setStyleSheet("background-color: springgreen")
         self.follower_axis_error_limit.setStyleSheet("background-color: springgreen")
 
+    def process_gamepad_index_speed_updated(self, speed):
+        throttled_speed = (float(self.max_index_gamepad_speed_edit.text()) / 3) * speed
+        self.index_axis_speed_slider.setValue(abs(int(self.index_axis_speed_slider.maximum() * throttled_speed)))
+
     ################################
     # Scan Options Related Methods #
     ################################
@@ -1732,6 +1846,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.activate_gamepad_index.click()
         if self.activate_gamepad_scan.isChecked():
             self.activate_gamepad_scan.click()
+        # Enter incremental_moves before starting the scanning sequence
+        self.enable_incremental_moves()
         self.prepare_gui_for_scanning()
         self.create_scan_points()
         self.mode_scanning_active = True
@@ -1761,6 +1877,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
     def process_scan_pause_button(self):
         self.gcmd('ST A,B,C')
         self.restore_gui_from_scanning()
+        self.scan_options_index_start.setEnabled(False)
+        self.scan_options_index_size.setEnabled(False)
         self.enable_incremental_moves()
         self.scanning_active = False
         self.process_deactivateAngle()
@@ -1773,6 +1891,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.activate_gamepad_index.click()
         if self.activate_gamepad_scan.isChecked():
             self.activate_gamepad_scan.click()
+        # If the user switched to jogging moves, switch back to incremental moves
+        self.enable_incremental_moves()
         self.prepare_gui_for_scanning()
         self.create_scan_points()
         self.scanning_active = True
@@ -2080,13 +2200,13 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                     time_slewing = dist_while_slewing / speed_scan
                     self.scan_points[i].append(round(time_accel_decel + time_slewing, 4))
 
-    def disable_gui_for_fault(self):
+    def disable_gui_from_estop_fault(self):
         self.prepare_gui_for_scanning()
         self.scan_start_button.setEnabled(False)
         self.enable_scan_axis.setEnabled(False)
         self.enable_index_axis.setEnabled(False)
 
-    def enable_gui_after_fault(self):
+    def enable_gui_after_estop_fault(self):
         self.restore_gui_from_scanning()
         self.scan_start_button.setEnabled(True)
         self.enable_scan_axis.setEnabled(True)
@@ -2133,6 +2253,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.scan_options_scan_speed_control.disable()
         self.scan_options_index_speed_control.disable()
         self.auto_incline_check_box.setEnabled(False)
+        self.uni_radio.setEnabled(False)
+        self.bi_radio.setEnabled(False)
 
         self.brake_left.setEnabled(True)
         self.brake_right.setEnabled(True)
@@ -2183,6 +2305,8 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.scan_options_scan_speed_control.enable()
         self.scan_options_index_speed_control.enable()
         self.auto_incline_check_box.setEnabled(True)
+        self.uni_radio.setEnabled(True)
+        self.bi_radio.setEnabled(True)
 
         self.activateAngle.setEnabled(True)
         self.deactivateAngle.setEnabled(True)
@@ -2199,7 +2323,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
     # Scan Axis Setup Related Methods #
     ###################################
 
-    # After a new counts/inch has been calculated adjust he speed slider bar
+    # After a new counts/inch has been calculated adjust the speed slider bar
     def adjust_speed_slider_maximum(self, slider_w_edit: SliderWithEdit, max_count_speed):
         max_inch_speed = slider_w_edit.max_allowed
         # Make a single step 0.01 inch/second change
@@ -2221,7 +2345,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.scan_axis_scaling_factor.setText(str(result))
 
     def process_apply_scan_axis_scaling_factor(self):
-        # Adjust the maximum speed for the scan axis slider, 0.5"/sec is hardcoded maximum
+        # Adjust the maximum speed for the scan axis slider
         sf = float(self.scan_axis_scaling_factor.text())
         if sf != 0:
             self.adjust_speed_slider_maximum(self.scan_axis_speed_control, abs(sf))
@@ -2236,6 +2360,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.gcmd('SD ,,' + str(acdc * 10))
             # Set the new soft limits
             self.process_set_soft_limits()
+
+    def process_scan_axis_current_limit_slider_change(self):
+        tl = self.scan_axis_current_limit_edit.text()
+        self.gcmd('TL ,,' + tl)
 
     ####################################
     # Index Axis Setup Related Methods #
@@ -2284,6 +2412,10 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             self.follower_scaling_factor.setStyleSheet("background-color: springgreen")
             self.process_apply_index_axis_error_limits()
 
+    def process_index_axis_current_limit_slider_change(self):
+        tl = self.index_axis_current_limit_edit.text()
+        self.gcmd('TL ' + tl + ',' + tl)
+
     ###################################################################################################
 
     def process_pid(self):
@@ -2302,6 +2434,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
     def process_gamepad_disconnected(self):
         self.gamepad_enabled_for_index.emit(False)  # TODO: make variable for gamepad enabled_index for index and scan
+        self.gamepad_enabled_for_scan.emit(False)
         self.stop_index_jog()
         self.stop_scan_jog()
         self.activate_gamepad_index.setVisible(False)
@@ -2514,7 +2647,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.inc_y.setText(str('{:.2f}'.format(round(float(data["inc y"][0]), 2))))
 
         if not int(float(data["estop"][0])):
-            self.process_hardware_stop()
+            self.process_hardware_estop()
 
         # Change the background of the follower position if it is off as compared to the allowable error
         if abs((abs(float(data["follower pos"][0])) - abs(self.follower_target))) > self.allowable_following_error:
@@ -2531,6 +2664,19 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 elif self.incremental_move_active and self.incremental_move_in_position:
                     self.stop_inc_move()
                     self.process_toggle_move_type()
+                # Disable all jogging buttons for index axis so user has to acknowledge faults
+                self.move_index_to_zero.setEnabled(False)
+                self.move_index_to_position.setEnabled(False)
+                self.toggle_move_type.setEnabled(False)
+                self.jog_index_ccw.setEnabled(False)
+                self.jog_index_cw.setEnabled(False)
+                self.jog_index_fwd.setEnabled(False)
+                self.jog_index_rev.setEnabled(False)
+                font = qtg.QFont()
+                font.setBold(True)
+                font.setWeight(75)
+                self.cb_follower_position_fault.setChecked(True)
+                self.cb_follower_position_fault.setFont(font)
         else:
             saved_style = self.label_follower_position.styleSheet()
             updated_style_sheet = saved_style.replace(";\nbackground-color: red", "")
@@ -2668,6 +2814,24 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         else:
             self.tool_orientation.setPixmap(qtg.QPixmap(""))
             self.tool_orientation.setText("   BAD\n INPUT")
+
+        # Check if the soft limits have been exceeded
+        if self.set_soft_limits.isChecked():
+            left = self.left_soft_limit_edit.text()
+            right = self.right_soft_limit_edit.text()
+            if left != "" and left != "-" and left != ".":
+                if float(self.label_scan_position.text()) <= float(self.left_soft_limit_edit.text()):
+                    self.label_31.setStyleSheet("background-color: red")
+                else:
+                    self.label_31.setStyleSheet("background-color: light grey")
+            if right != "" and right != "-" and right != ".":
+                if float(self.label_scan_position.text()) >= float(self.right_soft_limit_edit.text()):
+                    self.label_30.setStyleSheet("background-color: red")
+                else:
+                    self.label_30.setStyleSheet("background-color: light grey")
+        else:
+            self.label_30.setStyleSheet("background-color: light grey")
+            self.label_31.setStyleSheet("background-color: light grey")
 
     def process_send_galil_cmd(self):
         result = self.gcmd(self.cmd_text_edit.text())

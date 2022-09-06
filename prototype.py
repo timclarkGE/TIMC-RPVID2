@@ -269,7 +269,7 @@ class SliderWithEdit:
         self.slider = slider
         self.edit = edit
         self.max_allowed = max_allowed  # Inches or Amps
-        self.conversion_factor = self.slider.maximum() / max_allowed    # Slider Counts/tool units
+        self.conversion_factor = self.slider.maximum() / max_allowed  # Slider Counts/tool units
         self.edit.textChanged.connect(self.update_slider)  # Updates slider right away with each new number
         self.slider.valueChanged.connect(self.update_text)
         self.validator = qtg.QDoubleValidator()
@@ -692,9 +692,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                                        self.gamepad_enabled_for_index, self.gamepad_enabled_for_scan)
         self.gamepad.jogged_forward.connect(self.jog_index_fwd.pressed)
         self.gamepad.jogged_reverse.connect(self.jog_index_rev.pressed)
-        # self.gamepad.index_speed_updated.connect(
-        #     lambda speed: self.index_axis_speed_slider.setValue(
-        #         abs(int(self.index_axis_speed_slider.maximum() * speed))))
         self.gamepad.index_speed_updated.connect(self.process_gamepad_index_speed_updated)
         self.gamepad.differential_updated.connect(
             lambda dif: self.index_axis_balance_slider.setValue(int(self.index_axis_balance_slider.maximum() * dif)))
@@ -1074,9 +1071,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if not self.activate_gamepad_scan.isVisible():
             self.activate_gamepad_scan.setVisible(True)
         elif self.activate_gamepad_scan.isChecked():
-            factor = float(self.max_scan_gamepad_speed_edit.text())/3
+            factor = float(self.max_scan_gamepad_speed_edit.text()) / 3
             current_value = self.scan_axis_speed_control.slider.value()
-            self.scan_axis_speed_control.slider.setValue(int(current_value/factor))
+            self.scan_axis_speed_control.slider.setValue(int(current_value / factor))
             self.enable_jogging_buttons_scan()
             self.gamepad_enabled_for_scan.emit(False)
             self.stop_scan_jog()
@@ -1276,7 +1273,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.scan_axis_error = False
 
     def process_gamepad_scan_speed_updated(self, speed):
-        throttled_speed = (float(self.max_scan_gamepad_speed_edit.text())/3)*speed
+        throttled_speed = (float(self.max_scan_gamepad_speed_edit.text()) / 3) * speed
         self.scan_axis_speed_slider.setValue(abs(int(self.scan_axis_speed_slider.maximum() * throttled_speed)))
 
     #############################
@@ -1849,7 +1846,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.follower_axis_error_limit.setStyleSheet("background-color: springgreen")
 
     def process_gamepad_index_speed_updated(self, speed):
-        throttled_speed = (float(self.max_index_gamepad_speed_edit.text())/3)*speed
+        throttled_speed = (float(self.max_index_gamepad_speed_edit.text()) / 3) * speed
         self.index_axis_speed_slider.setValue(abs(int(self.index_axis_speed_slider.maximum() * throttled_speed)))
 
     ################################
@@ -2221,7 +2218,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.scan_start_button.setEnabled(False)
         self.enable_scan_axis.setEnabled(False)
         self.enable_index_axis.setEnabled(False)
-        print("HERE 3")  # TIMC
 
     def enable_gui_after_estop_fault(self):
         self.restore_gui_from_scanning()

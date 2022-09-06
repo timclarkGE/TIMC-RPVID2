@@ -2579,7 +2579,7 @@ Angle</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
-           <widget class="QCheckBox" name="checkBox_9">
+           <widget class="QCheckBox" name="cb_left_position_fault">
             <property name="font">
              <font>
               <weight>50</weight>
@@ -2620,7 +2620,7 @@ Angle</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
-           <widget class="QCheckBox" name="checkBox_10">
+           <widget class="QCheckBox" name="cb_right_position_fault">
             <property name="font">
              <font>
               <weight>50</weight>
@@ -2661,7 +2661,7 @@ Angle</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
-           <widget class="QCheckBox" name="checkBox_11">
+           <widget class="QCheckBox" name="cb_scan_position_fault">
             <property name="font">
              <font>
               <weight>50</weight>
@@ -2702,7 +2702,7 @@ Angle</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_15">
           <item>
-           <widget class="QCheckBox" name="checkBox_13">
+           <widget class="QCheckBox" name="cb_follower_position_fault">
             <property name="font">
              <font>
               <weight>50</weight>
@@ -3578,7 +3578,13 @@ To Zero</string>
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>99</number>
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="pageStep">
+         <number>1000</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -3594,7 +3600,7 @@ To Zero</string>
          </rect>
         </property>
         <property name="text">
-         <string>1A</string>
+         <string>0A</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_103">
@@ -4330,74 +4336,6 @@ To Zero</string>
           <string>Apply</string>
          </property>
         </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>492</x>
-           <y>510</y>
-           <width>157</width>
-           <height>107</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_86">
-            <property name="text">
-             <string>Other</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_87">
-            <property name="text">
-             <string>-58866.83</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_85">
-            <property name="text">
-             <string>RPVID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_92">
-            <property name="text">
-             <string>-20223.73</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="label_91">
-            <property name="text">
-             <string>20223.73</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_88">
-            <property name="text">
-             <string>58860.17</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="label_90">
-            <property name="text">
-             <string>-1466.15</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_89">
-            <property name="text">
-             <string>-1063.0</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
        </widget>
        <widget class="QLabel" name="label_59">
         <property name="geometry">
@@ -4457,7 +4395,13 @@ To Zero</string>
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>99</number>
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="pageStep">
+         <number>1000</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -4473,7 +4417,7 @@ To Zero</string>
          </rect>
         </property>
         <property name="text">
-         <string>1A</string>
+         <string>0A</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_110">
@@ -4817,6 +4761,120 @@ To Zero</string>
         </property>
         <property name="text">
          <string>RIGHT BRAKE</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="max_scan_gamepad_speed_slider">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>682</y>
+          <width>275</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="pageStep">
+         <number>1000</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_113">
+        <property name="geometry">
+         <rect>
+          <x>108</x>
+          <y>644</y>
+          <width>207</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Max Scan Gamepad Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="max_scan_gamepad_speed_edit">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>678</y>
+          <width>55</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Max Scan Gamepad Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="max_index_gamepad_speed_edit">
+        <property name="geometry">
+         <rect>
+          <x>920</x>
+          <y>678</y>
+          <width>55</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Max Scan Gamepad Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_114">
+        <property name="geometry">
+         <rect>
+          <x>618</x>
+          <y>644</y>
+          <width>207</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Max Index Gamepad Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QSlider" name="max_index_gamepad_speed_slider">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>682</y>
+          <width>275</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+        <property name="pageStep">
+         <number>1000</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </widget>
@@ -5370,7 +5428,7 @@ PL&amp;F: Down</string>
           <rect>
            <x>40</x>
            <y>32</y>
-           <width>359</width>
+           <width>349</width>
            <height>175</height>
           </rect>
          </property>
@@ -5507,7 +5565,7 @@ PL&amp;F: Down</string>
         <widget class="QLabel" name="label_105">
          <property name="geometry">
           <rect>
-           <x>592</x>
+           <x>644</x>
            <y>156</y>
            <width>9</width>
            <height>21</height>
@@ -5520,7 +5578,7 @@ PL&amp;F: Down</string>
         <widget class="QLabel" name="label_97">
          <property name="geometry">
           <rect>
-           <x>1008</x>
+           <x>1060</x>
            <y>156</y>
            <width>27</width>
            <height>21</height>
@@ -5533,7 +5591,7 @@ PL&amp;F: Down</string>
         <widget class="QLabel" name="label_96">
          <property name="geometry">
           <rect>
-           <x>592</x>
+           <x>644</x>
            <y>92</y>
            <width>442</width>
            <height>21</height>
@@ -5546,7 +5604,7 @@ PL&amp;F: Down</string>
         <widget class="QSlider" name="slider_angle_correction_intensity">
          <property name="geometry">
           <rect>
-           <x>590</x>
+           <x>642</x>
            <y>132</y>
            <width>443</width>
            <height>22</height>
@@ -5573,6 +5631,71 @@ PL&amp;F: Down</string>
          <property name="invertedControls">
           <bool>false</bool>
          </property>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="geometry">
+          <rect>
+           <x>418</x>
+           <y>32</y>
+           <width>169</width>
+           <height>175</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Invert Inclinometer</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>22</x>
+            <y>32</y>
+            <width>128</width>
+            <height>123</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QCheckBox" name="invert_up">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Invert UP</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="invert_down">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Invert DOWN</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="invert_cw">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Invert CW</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="invert_ccw">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Invert CCW</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </widget>
       </widget>

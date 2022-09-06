@@ -11,7 +11,7 @@ import gclib
 BL = -2147483648
 FL = 2147483647
 
-PYINSTALLER = False
+PYINSTALLER = True
 AT_HOME = True
 DEBUG = False
 
@@ -246,8 +246,18 @@ class BalanceWithEdit:
         self.edit.setValidator(self.validator)
         self.slider.setValue(0)
 
+    def check_if_valid(self):
+        text = self.edit.text()
+        if text == "" or text == "-" or text == "+" or text == ".":
+            return False
+        if text.count(".") > 1:
+            return False
+        if text[len(text) - 1] == ".":
+            return False
+        return True
+
     def update_slider(self):
-        if self.edit.text() == "":
+        if not self.check_if_valid():
             self.slider.setValue(0)
         else:
             self.slider.setValue(int(self.edit.text()))
@@ -273,7 +283,7 @@ class SliderWithEdit:
         self.edit.textChanged.connect(self.update_slider)  # Updates slider right away with each new number
         self.slider.valueChanged.connect(self.update_text)
         self.validator = qtg.QDoubleValidator()
-        self.validator.setRange(0, self.max_allowed)
+        self.validator.setRange(0, self.max_allowed, 2)
         self.validator.setNotation(self.validator.StandardNotation)
         self.edit.setValidator(self.validator)
         self.edit.setText(str(2.00))
@@ -412,8 +422,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.scan_gamepad_speed_control = SliderWithEdit(self.max_scan_gamepad_speed_slider,
                                                          self.max_scan_gamepad_speed_edit, 3)
         self.index_gamepad_speed_control = SliderWithEdit(self.max_index_gamepad_speed_slider,
-                                                         self.max_index_gamepad_speed_edit, 3)
-
+                                                          self.max_index_gamepad_speed_edit, 3)
 
         # Setup Left VEGA Card
         gui_input = [self.vega_left_high_gain,
@@ -784,7 +793,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.checkBox_reverseRightMotor.clicked.connect(self.process_checkBox_reverseRightMotor)
         self.apply_index_axis_error_limits.pressed.connect(self.process_apply_index_axis_error_limits)
         self.index_axis_current_limit_slider.valueChanged.connect(self.process_index_axis_current_limit_slider_change)
-        self.index_axis_torque_control.edit.setText("3.00") # Init current limit at 3A
+        self.index_axis_torque_control.edit.setText("3.00")  # Init current limit at 3A
 
         self.clear_fault.pressed.connect(lambda: self.error_mg.setText(""))
 

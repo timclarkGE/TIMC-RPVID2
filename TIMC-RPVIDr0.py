@@ -244,8 +244,18 @@ class BalanceWithEdit:
         self.edit.setValidator(self.validator)
         self.slider.setValue(0)
 
+    def check_if_valid(self):
+        text = self.edit.text()
+        if text == "" or text == "-" or text == "+" or text == ".":
+            return False
+        if text.count(".") > 1:
+            return False
+        if text[len(text) - 1] == ".":
+            return False
+        return True
+
     def update_slider(self):
-        if self.edit.text() == "":
+        if not self.check_if_valid():
             self.slider.setValue(0)
         else:
             self.slider.setValue(int(self.edit.text()))
@@ -271,7 +281,7 @@ class SliderWithEdit:
         self.edit.textChanged.connect(self.update_slider)  # Updates slider right away with each new number
         self.slider.valueChanged.connect(self.update_text)
         self.validator = qtg.QDoubleValidator()
-        self.validator.setRange(0, self.max_allowed)
+        self.validator.setRange(0, self.max_allowed, 2)
         self.validator.setNotation(self.validator.StandardNotation)
         self.edit.setValidator(self.validator)
         self.edit.setText(str(2.00))
@@ -411,7 +421,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                                                          self.max_scan_gamepad_speed_edit, 3)
         self.index_gamepad_speed_control = SliderWithEdit(self.max_index_gamepad_speed_slider,
                                                           self.max_index_gamepad_speed_edit, 3)
-
 
         # Setup Left VEGA Card
         gui_input = [self.vega_left_high_gain,

@@ -12,7 +12,6 @@ BL = -2147483648
 FL = 2147483647
 
 PYINSTALLER = True
-AT_HOME = True
 DEBUG = False
 
 
@@ -51,15 +50,12 @@ class VegaCard():
         if self.high_gain.isChecked():
             self.connection.gcmd('CB ' + self.jumper_11)
             self.connection.gcmd('CB ' + self.jumper_12)
-            print("Set gain high")
         elif self.medium_gain.isChecked():
             self.connection.gcmd('CB ' + self.jumper_11)
             self.connection.gcmd('SB ' + self.jumper_12)
-            print("set gain medium")
         elif self.low_gain.isChecked():
             self.connection.gcmd('SB ' + self.jumper_11)
             self.connection.gcmd('CB ' + self.jumper_12)
-            print("set gain low")
 
     def reset_vega(self):
         # Check the bit state, if it is set the output will be 1
@@ -576,7 +572,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.index_axis_balance_slider.valueChanged.connect(self.process_index_axis_speed_slider_change)
         self.index_axis_speed_slider.valueChanged.connect(self.process_index_axis_speed_slider_change)
         self.center_balance_slider.pressed.connect(lambda: self.index_axis_balance_slider.setValue(0))
-        self.center_angle_slider.pressed.connect(lambda: self.commanded_angle.setText("0"))
 
         self.toggle_move_type.pressed.connect(self.process_toggle_move_type)
         self.move_index_to_zero.pressed.connect(self.process_move_index_to_zero)
@@ -797,15 +792,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
         self.clear_fault.pressed.connect(lambda: self.error_mg.setText(""))
 
-        if not AT_HOME:
-            self.checkBox_reverseScanFeedback.click()
-            self.checkBox_reverseLeftFeedback.click()
-            self.checkBox_reverseRightFeedback.click()
-            self.checkBox_reverseFollowerFeedback.click()
-            self.scan_axis_scaling_factor.setText("58448.73")
-        self.index_axis_left_scaling_factor.setText("-18125")
-        self.index_axis_right_scaling_factor.setText("18125")
-        self.follower_scaling_factor.setText("-1290.0")
         self.process_apply_scan_axis_scaling_factor()
         self.process_apply_scan_axis_error_limit()
         self.process_apply_index_axis_scaling_factor()
@@ -891,7 +877,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         if self.cb_software_estop.isChecked():
             self.cb_software_estop.setFont(font)
             self.cb_software_estop.setChecked(False)
-            self.enable_gui_after_estop_fault()  # TIM this needs to go somewhere else
+            self.enable_gui_after_estop_fault()
             self.estop.setStyleSheet("background-color: light grey")
         if self.cb_hardware_estop.isChecked():
             self.cb_hardware_estop.setFont(font)
@@ -1043,7 +1029,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         motor_c_status = not int(float(self.gcmd('MG _MOC')))
         feedback_fault_scan = self.vega_scan.report_fault()
 
-        # Servo the motors if the bus is off and there is not an amplifier fault
+        # Servo the motors if there is not an amplifier fault
         if not self.fault_scan.isChecked() and not feedback_fault_scan:
             # Motor is disabled
             if not motor_c_status:
@@ -1247,7 +1233,7 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_scan_axis.setStyleSheet("background-color: red")
                 self.enable_scan_axis_2.setStyleSheet("background-color: red")
 
-        # Check if motor is off
+        # Check if motor is off, set enable button to grey
         elif int(data[0]) & 32:
             if self.scan_axis_is_enabled:
                 self.scan_axis_is_enabled = False
@@ -1257,9 +1243,11 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_scan_axis_2.setStyleSheet("")
         # Check if motor is on
         elif not int(data[0]) & 32:
-            if not self.scan_axis_is_enabled:
+            # Set the enabled variable if there are no VEGA card fault, and no amplifier fault
+            if not self.scan_axis_is_enabled and not self.fault_scan.isChecked():
                 self.scan_axis_is_enabled = True
-            if not "green" in self.enable_scan_axis.styleSheet():
+            # Set green if no VEGA card fault, and no amplifier fault
+            if not "green" in self.enable_scan_axis.styleSheet() and not self.fault_scan.isChecked():
                 self.enable_scan_axis.setStyleSheet("background-color: green")
                 self.enable_scan_axis_2.setStyleSheet("background-color: green")
 
@@ -1354,9 +1342,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                         self.invert_tilt_sensor.setChecked(True)
                     elif self.orientation_state == "LEFT":
                         self.invert_tilt_sensor.setChecked(False)
-                    # TODO: Delete, only the X sensor is used for the prototype robot,which needs to face up
-                    elif self.orientation_state == "ROBOT":
-                        self.invert_tilt_sensor.setChecked(False)
                 else:
                     if self.orientation_state == "UP":
                         self.invert_tilt_sensor.setChecked(True)
@@ -1378,9 +1363,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                     if self.orientation_state == "RIGHT":
                         self.invert_tilt_sensor.setChecked(False)
                     elif self.orientation_state == "LEFT":
-                        self.invert_tilt_sensor.setChecked(True)
-                    # TODO: Delete, only the X sensor is used for the prototype robot, which needs to face up
-                    elif self.orientation_state == "ROBOT":
                         self.invert_tilt_sensor.setChecked(True)
                 else:
                     if self.orientation_state == "UP":
@@ -1583,9 +1565,9 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 self.enable_index_axis_2.setStyleSheet("")
         # Check if motors are on
         elif not int(data[0]) & 32 and not int(data[1]) & 32:
-            if not self.index_axis_is_enabled:
+            if not self.index_axis_is_enabled and not self.fault_index.isChecked():
                 self.index_axis_is_enabled = True
-            if not "green" in self.enable_index_axis.styleSheet():
+            if not "green" in self.enable_index_axis.styleSheet() and not self.fault_index.isChecked():
                 self.enable_index_axis.setStyleSheet("background-color: green")
                 self.enable_index_axis_2.setStyleSheet("background-color: green")
 
@@ -1755,13 +1737,21 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.pid.setpoint = sp / 1000
         self.voltageSetpoint.setText(str('{:.2f}'.format(self.pid.setpoint)))
 
+    # voltages[0] = y sensor
     def process_inclinometer_data(self, voltages):
+        if self.invert_y.isChecked():
+            y_raw = round(float(voltages[0]), 2)
+            y_raw = 5 - y_raw
+            voltages[0] = str(y_raw)
+
+        if self.invert_x.isChecked():
+            x_raw = round(float(voltages[1]), 2)
+            x_raw = 5 - x_raw
+            voltages[1] = str(x_raw)
+
         if is_active(voltages[0]) and not is_active(voltages[1]):
             voltage = voltages[0]
         elif is_active(voltages[1]) and not is_active(voltages[0]):
-            voltage = voltages[1]
-        # TODO: Delete this check is just for the prototype robot
-        elif is_active(voltages[0]) and is_active(voltages[1]):
             voltage = voltages[1]
         else:
             voltage = 2.5
@@ -1790,9 +1780,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                 if not self.radio_x_active.isChecked() or self.radio_y_active.isChecked():
                     self.radio_x_active.setChecked(True)
                     self.radio_y_active.setChecked(False)
-            # TODO: delete this case, this is just for the prototype robot
-            elif is_active(voltages[0]) and is_active(voltages[1]):
-                voltage = voltages[1]
             else:
                 voltage = 2.5
                 if DEBUG:
@@ -2001,13 +1988,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                             # Driving forward
                             else:
                                 self.invert_tilt_sensor.setChecked(True)
-                        elif self.orientation_state == "ROBOT":
-                            # Driving reverse
-                            if self.sign_toggled_index_axis:
-                                self.invert_tilt_sensor.setChecked(True)
-                            # Driving forward
-                            else:
-                                self.invert_tilt_sensor.setChecked(False)
 
                     # Index start is greater than index end
                     elif float(self.scan_options_index_start.text()) > float(self.scan_options_index_stop.text()):
@@ -2039,13 +2019,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
                             # Driving forward
                             else:
                                 self.invert_tilt_sensor.setChecked(False)
-                        elif self.orientation_state == "ROBOT":
-                            # Driving reverse
-                            if self.sign_toggled_index_axis:
-                                self.invert_tilt_sensor.setChecked(False)
-                            # Driving forward
-                            else:
-                                self.invert_tilt_sensor.setChecked(True)
 
                     if overshoot_flag:
                         self.invert_tilt_sensor.setChecked(not self.invert_tilt_sensor.isChecked())
@@ -2283,7 +2256,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
         self.activateAngle.setEnabled(False)
         self.deactivateAngle.setEnabled(False)
-        self.center_angle_slider.setEnabled(False)
 
     def restore_gui_from_scanning(self):
         self.set_scan_position_to.setEnabled(True)
@@ -2332,7 +2304,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
 
         self.activateAngle.setEnabled(True)
         self.deactivateAngle.setEnabled(True)
-        self.center_angle_slider.setEnabled(True)
 
     def process_slider_angle_correction_intensity(self, value):
         # Get value of slider
@@ -2588,9 +2559,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             if not self.radio_x_active.isChecked() or self.radio_y_active.isChecked():
                 self.radio_x_active.setChecked(True)
                 self.radio_y_active.setChecked(False)
-        # TODO: delete this case, this is just for the prototype robot
-        elif is_active(voltages[0]) and is_active(voltages[1]):
-            voltage = voltages[1]
         else:
             voltage = 2.5
 
@@ -2665,6 +2633,17 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
         self.left_motor_counts.setText(str(round(float(data["left pos"][0]))))
         self.right_motor_counts.setText(str(round(float(data["right pos"][0]))))
         self.follower_counts.setText(str(round(float(data["follower pos"][0]))))
+
+        if self.invert_y.isChecked():
+            y_converted = round(float(data["inc y"][0]), 2)
+            y_converted = 5 - y_converted
+            data["inc y"][0] = str(y_converted)
+
+        if self.invert_x.isChecked():
+            x_converted = round(float(data["inc x"][0]), 2)
+            x_converted = 5 - x_converted
+            data["inc x"][0] = str(x_converted)
+
         self.inc_x.setText(str('{:.2f}'.format(round(float(data["inc x"][0]), 2))))
         self.inc_y.setText(str('{:.2f}'.format(round(float(data["inc y"][0]), 2))))
 
@@ -2829,10 +2808,6 @@ class UserWindow(qtw.QMainWindow, Ui_MainWindow):
             # Check if the auto angle routine is running and turn it off
             if self.inclinometer.isRunning():
                 self.process_deactivateAngle()
-        elif is_active(data["inc x"][0]) and is_active(data["inc y"][0]):
-            self.tool_orientation.setPixmap(qtg.QPixmap("Icons/robot.ico"))
-            self.angle_readout.set_enable_Needle_Polygon(False)
-            self.orientation_state = "ROBOT"
         else:
             self.tool_orientation.setPixmap(qtg.QPixmap(""))
             self.tool_orientation.setText("   BAD\n INPUT")

@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['prototype.py'],
+a = Analysis(['TIMC-RPVIDr1.py'],
              pathex=['C:\\Users\\isi\\PycharmProjects\\TIMC-RPVID2'],
              binaries=[
              (r'C:\Program Files (x86)\Galil\gclib\dll\x64\libcrypto-3.dll','gclib\dll\\x64'),
@@ -46,7 +46,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='prototype',
+          name='TIMC-RPVIDr1',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

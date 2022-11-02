@@ -2331,7 +2331,7 @@ class Ui_MainWindow(object):
 "Angle"))
         self.deactivateAngle.setText(_translate("MainWindow", "Stop Auto\n"
 "Angle"))
-        self.commanded_angle.setText(_translate("MainWindow", "34"))
+        self.commanded_angle.setText(_translate("MainWindow", "0"))
         self.label_101.setText(_translate("MainWindow", "Setpoint (deg):"))
         self.groupBox_21.setTitle(_translate("MainWindow", "Tool Orientation"))
         self.groupBox_22.setTitle(_translate("MainWindow", "Angle Gauge"))
